@@ -1,0 +1,28 @@
+.pointer {
+  cursor: pointer;
+}
+.zoom {
+  transition: transform 0.1s;
+}
+.zoom:hover {
+  transform: scale(1.05);
+  transition: all .2s;
+  -webkit-transition: all .1s;
+  -moz-transition: all .2s;
+}
+
+.Hover{
+  opacity: 0.8;
+  &:hover{
+    opacity:1;
+  }
+}
+
+.noScrollBar {
+  -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.noScrollBar::-webkit-scrollbar {
+  display: none;  /* for IE, Edge and Firefox */
+}
