@@ -1,6 +1,7 @@
 import "@/styles/main.scss";
 import "@fontsource/teko";
-import "@fontsource/roboto";
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/600.css';
 import Layout from "@/components/layout/Layout";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
