@@ -27,21 +27,6 @@ const themeSetup = {
     h1: {
       fontFamily: "teko",
     },
-    h2: {
-      fontFamily: "teko",
-    },
-    h3: {
-      fontFamily: "teko",
-    },
-    h4: {
-      fontFamily: "teko",
-    },
-    h5: {
-      fontFamily: "teko",
-    },
-    h6: {
-      fontFamily: "teko",
-    },
   },
 };
 
