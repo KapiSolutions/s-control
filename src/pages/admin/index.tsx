@@ -1,4 +1,4 @@
-// import BreadCrumbs from "@/components/BreadCrumbs";
+import BreadCrumbs from "@/components/BreadCrumbs";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { UserProfile } from "@auth0/nextjs-auth0/client";
 import { Typography, Box } from "@mui/material";
@@ -14,7 +14,7 @@ export default function AdminPage({ user }: ProfileProps): JSX.Element {
       {/* <NextSeo title="S-Control | Successful Login!" nofollow={true} /> */}
 
       <Box sx={{ mt: 5, ml: 2 }}>
-        {/* <BreadCrumbs items={breadcrumbs} /> */}
+        <BreadCrumbs items={breadcrumbs} />
         <Typography variant="body1">
           {/* Welcome {user.name}! <a href="/api/auth/logout"> - Logout</a> */}
           Welcome back!

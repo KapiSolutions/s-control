@@ -1,5 +1,6 @@
 import Head from "next/head";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
+import BreadCrumbs from "@/components/BreadCrumbs";
 
 export default function Home() {
   return (
@@ -10,6 +11,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <Box sx={{ ml: 2 }}>
+        <BreadCrumbs items={null} />
+      </Box>
       <Container>
         <Typography variant="h1" sx={{ textTransform: "uppercase"}}>Co nas wyróżnia</Typography>
         <Typography variant="body1">Some text...</Typography>
