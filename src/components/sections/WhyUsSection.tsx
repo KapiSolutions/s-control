@@ -107,7 +107,7 @@ const WhyUsSection = (): JSX.Element => {
           </Stack>
         ))}
       </Stack>
-      <Stack alignItems="center" justifyContent="center" mt={6} mb={4} spacing={1}>
+      <Stack alignItems="center" justifyContent="center" mt={6}  spacing={1}>
         <Box sx={{ position: "relative", width: "50%", height: "2px", backgroundColor: "primary.main", mb: 3 }}></Box>
         <Typography name="satisfyBar" variant="h4">
           {progress}%
