@@ -3,6 +3,7 @@ import { Box, Stack } from "@mui/material";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import WhyUsSection from "@/components/sections/WhyUsSection";
 import DotationSection from "@/components/sections/DotationSection";
+import ContactSection from "@/components/sections/ContactSection";
 
 export default function Home() {
   return (
@@ -20,9 +21,10 @@ export default function Home() {
       <Box sx={{ ml: 2 }}>
         <BreadCrumbs items={null} />
       </Box>
-      <Stack spacing={2}>
+      <Stack spacing={6}>
         <WhyUsSection />
         <DotationSection />
+        <ContactSection />
       </Stack>
     </>
   );
