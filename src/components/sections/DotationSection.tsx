@@ -20,35 +20,35 @@ const DotationSection = (): JSX.Element => {
       borderRadius: "50%",
       margin: "auto",
       mt: 4,
-
-      // color: "text.secondary",
     },
     rectBox: {
       width: isMobile ? "95%" : "70%",
       minWidth: "300px",
       height: "fit-content",
       p: 2,
-      mt: 8,
+      mt: 7,
       mr: 0,
       ml: "auto",
       backgroundColor: "rgba(0, 21, 37, 0.65)",
-      color: "text.secondary",
+      color: "#f1f1f1",
       borderBottom: "8px solid white",
       borderRadius: "2px",
     },
     rectOrangeBox: {
-      // position: "absolute",
-      // bottom: "5px",
       width: isMobile ? "95%" : "100%",
       minWidth: "300px",
       height: "fit-content",
       p: 2,
       mt: 4,
       backgroundColor: "primary.main",
-      // color: "text.secondary",
-      // borderBottom: "8px solid white",
-      // borderRadius: "2px",
     },
+  };
+  const dotationItem = (price: string, detail: string) => {
+    return (
+      <Typography variant="h6">
+        <b>{price} zł</b> <Typography variant="body1" component="span">na {detail}</Typography> 
+      </Typography>
+    );
   };
   return (
     <Box
@@ -69,18 +69,10 @@ const DotationSection = (): JSX.Element => {
         <Typography variant="h5" sx={{ fontWeight: "bold", mb: 1 }}>
           Uzyskaj nawet:
         </Typography>
-        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-          Pompa ciepła do 19 400 zł
-        </Typography>
-        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-          Instalacja Fotowoltaiczna do 7 000 zł
-        </Typography>
-        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-          Magazyn ciepła do 5 000 zł
-        </Typography>
-        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-          System HEMS do 3 000 zł
-        </Typography>
+        {dotationItem("19 400", "Pompy ciepła")}
+        {dotationItem("7 000", "Instalacje Fotowoltaiczne")}
+        {dotationItem("5 000", "Magazyny ciepła")}
+        {dotationItem("3 000", "Systemy HEMS")}
       </Stack>
 
       {/* <Box sx={styles.circleBox}>
@@ -94,7 +86,7 @@ const DotationSection = (): JSX.Element => {
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
             Masz pytania? Zadzwoń do nas!
           </Typography>
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", mt:1 }}>
             730 530 556
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
