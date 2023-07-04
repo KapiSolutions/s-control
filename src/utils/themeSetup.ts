@@ -2,7 +2,6 @@ const themeSetup = {
   palette: {
     text: {
       primary: "#001525",
-      secondary: "#f1f1f1",
     },
     primary: {
       main: "#f7b236",
