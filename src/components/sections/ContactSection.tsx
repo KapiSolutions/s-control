@@ -23,9 +23,9 @@ const ContactSection = (): JSX.Element => {
     defaultMatches: true,
   });
   return (
-    <Container name="ContactSection">
+    <Container name="ContactSection" sx={{minWidth: "98vw"}}>
       <ContentHeader primary="Szybki kontakt" secondary="Skorzystaj z naszego formularza" />
-      <Stack alignItems="center" direction={isMobile ? "column" : "row"}>
+      <Stack alignItems="center" justifyContent="center"direction={isMobile ? "column" : "row"} >
         <ContactForm />
         <Box sx={{ width: isMobile ? "100%" : "50%", ml: isMobile ? 0 : 5, mt: isMobile ? 4 : 0 }}>
           <MapWrapper
