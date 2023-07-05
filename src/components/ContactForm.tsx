@@ -34,25 +34,9 @@ const ContactForm = (): JSX.Element => {
     setCaptchaResult(captchaCode);
   };
 
-  const captchaValidation = async (captchaCode: string) => {
-    try {
-      const res = await axios.post("/api/reCaptcha/", { captcha: captchaCode });
-      if (res.data.success) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (err) {
-      const errors = err as Error;
-      console.log("errMsg: ", errors.message);
-      showSnackBar("error", "Błąd reCAPTCHA");
-      return false;
-    }
-  };
-
   const onSubmit: SubmitHandler<Contact> = async (data) => {
     setLoading(true);
-
+    // Show reCaptcha widget
     if (!showReCaptcha) {
       setShowReCaptcha(true);
       setLoading(false);
@@ -63,25 +47,20 @@ const ContactForm = (): JSX.Element => {
       setLoading(false);
       return;
     }
-    const captchaOK = await captchaValidation(captchaResult);
 
-    if (captchaOK) {
-      try {
-        await axios.post("/api/sendEmail/", { payload: data });
-        reset();
-        setShowReCaptcha(false);
-        setCaptchaResult(null);
-        showSnackBar("success", "Wiadomość wysłana, dziękujemy!");
-      } catch (err) {
-        const errors = err as Error;
-        console.log("errMsg: ", errors.message);
-        showSnackBar("error", errors.message);
-      } finally {
-        setLoading(false);
-      }
-    } else {
+    try {
+      // Validate captcha and send email to the user
+      await axios.post("/api/sendEmail/", { payload: data, captcha: captchaResult });
+      reset();
+      setShowReCaptcha(false);
+      setCaptchaResult(null);
+      showSnackBar("success", "Wiadomość wysłana, dziękujemy!");
+    } catch (err) {
+      const errors = err as Error;
+      console.log("errMsg: ", errors.message);
+      showSnackBar("error", errors.message);
+    } finally {
       setLoading(false);
-      return;
     }
   };
 

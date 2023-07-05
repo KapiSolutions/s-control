@@ -1,26 +1,33 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { schema } from "@/utils/schema/contact";
 import emailjs, { EmailJSResponseStatus } from "@emailjs/nodejs";
+import reCaptcha from "@/utils/reCaptcha";
 
 export default async function sendEmail(req: NextApiRequest, res: NextApiResponse): Promise<void> {
   if (req.method === "POST") {
     // Extract data from the request body
-    const { payload } = req.body;
+    const { payload, captcha } = req.body;
+    // Validate incoming data
     try {
-      // Validate incoming data
       await schema.validate(payload);
-      const data = {
-        service_id: process.env.EMAILJS_SERVICE_ID,
-        template_id: process.env.EMAILJS_TEMPLATE_ID,
-        user_id: process.env.EMAILJS_USER_ID,
-        template_params: payload,
-      };
     } catch (error) {
       console.error("Schema validation error:", error);
       res.status(500).json({ error: "Schema validation error" });
       return;
     }
-
+    // Validate captcha code
+    if (captcha && typeof captcha === "string") {
+      try {
+        await reCaptcha(captcha);
+      } catch (error) {
+        res.status(401).end("Invalid Captcha Code!");
+        return;
+      }
+    } else {
+      res.status(403).end("Captcha Code required!");
+      return;
+    }
+    // If all data is valid then send the email
     try {
       const serviceID = process.env.EMAILJS_SERVICE_ID ? process.env.EMAILJS_SERVICE_ID : "";
       const templateID = process.env.EMAILJS_TEMPLATE_ID ? process.env.EMAILJS_TEMPLATE_ID : "";
