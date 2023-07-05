@@ -17,7 +17,7 @@ const nextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: `default-src 'self' https://vitals.vercel-insights.com https://www.google.com/recaptcha/ ; form-action 'self'; frame-src 'self' https://www.google.com/recaptcha/; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' https://storage.googleapis.com data: ; script-src 'self' ${
+            value: `default-src 'self' https://vitals.vercel-insights.com https://www.google.com/recaptcha/ ; form-action 'self'; frame-src 'self' https://www.google.com/recaptcha/; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' https://stamen-tiles.a.ssl.fastly.net https://a.tile.openstreetmap.org https://b.tile.openstreetmap.org https://c.tile.openstreetmap.org data: ; script-src 'self' ${
               production ? "" : "'unsafe-eval'"
             } https://apis.google.com  https://vitals.vercel-insights.com/  https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/ ;`,
           },
