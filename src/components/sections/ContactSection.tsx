@@ -7,7 +7,7 @@ import ContentHeader from "../ContentHeader";
 import ContactForm from "../ContactForm";
 import { Overlay, Marker } from "pigeon-maps";
 import Image from "next/image";
-import arrow from "../../../public/img/sections/contact/arrow6.png";
+import arrow from "../../../public/img/sections/contact/arrow.png";
 
 const DynamicMap = dynamic(() => import("pigeon-maps").then((module) => module.Map) as any, {
   ssr: false, // Disable server-side rendering
