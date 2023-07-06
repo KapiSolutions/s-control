@@ -6,7 +6,7 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import AccessibilityNewIcon from "@mui/icons-material/AccessibilityNew";
 import AssuredWorkloadIcon from "@mui/icons-material/AssuredWorkload";
 
-const WhyUsSection = (): JSX.Element => {
+const WhyUs = (): JSX.Element => {
   const theme = useTheme();
   const [progress, setProgress] = useState(10);
   const [isVisible, setIsVisible] = useState(false);
@@ -118,4 +118,4 @@ const WhyUsSection = (): JSX.Element => {
   );
 };
 
-export default WhyUsSection;
+export default WhyUs;

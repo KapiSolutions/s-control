@@ -4,7 +4,7 @@ import ContentHeader from "../ContentHeader";
 import Image from "next/image";
 import logos from "../../../public/img/sections/dotationSection/logos.webp";
 
-const DotationSection = (): JSX.Element => {
+const Dotation = (): JSX.Element => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
@@ -101,4 +101,4 @@ const DotationSection = (): JSX.Element => {
   );
 };
 
-export default DotationSection;
+export default Dotation;

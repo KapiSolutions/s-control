@@ -16,7 +16,7 @@ const MapWrapper = ({ children, ...props }: any) => {
   return <DynamicMap {...props}>{children}</DynamicMap>;
 };
 
-const ContactSection = (): JSX.Element => {
+const Contact = (): JSX.Element => {
   const [zoom, setZoom] = useState(8);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"), {
@@ -55,4 +55,4 @@ const ContactSection = (): JSX.Element => {
   );
 };
 
-export default ContactSection;
+export default Contact;

@@ -1,9 +1,9 @@
 import { NextSeo } from "next-seo";
 import { Box, Stack } from "@mui/material";
 import BreadCrumbs from "@/components/BreadCrumbs";
-import WhyUsSection from "@/components/sections/WhyUsSection";
-import DotationSection from "@/components/sections/DotationSection";
-import ContactSection from "@/components/sections/ContactSection";
+import WhyUs from "@/components/sections/WhyUs";
+import Dotation from "@/components/sections/Dotation";
+import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -22,9 +22,9 @@ export default function Home() {
         <BreadCrumbs items={null} />
       </Box>
       <Stack spacing={6}>
-        <WhyUsSection />
-        <DotationSection />
-        <ContactSection />
+        <WhyUs />
+        <Dotation />
+        <Contact />
       </Stack>
     </>
   );
