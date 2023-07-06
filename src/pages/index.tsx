@@ -4,6 +4,8 @@ import BreadCrumbs from "@/components/BreadCrumbs";
 import WhyUs from "@/components/sections/WhyUs";
 import Dotation from "@/components/sections/Dotation";
 import Contact from "@/components/sections/Contact";
+import Realizations from "@/components/sections/realizations/Realizations";
+import realizations from "@/tmp/realizations.json";
 
 export default function Home() {
   return (
@@ -25,6 +27,7 @@ export default function Home() {
         <WhyUs />
         <Dotation />
         <Contact />
+        <Realizations realizations={realizations} />
       </Stack>
     </>
   );
