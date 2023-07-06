@@ -104,7 +104,7 @@ const Navbar = (): JSX.Element => {
           <Box
             className="pointer"
             onClick={brandButtonAction}
-            sx={{ position: "relative", width: "110px", height: "22px"}}
+            sx={{ position: "relative", width: "110px", height: "22px" }}
           >
             <Image src={logo} alt="S-control logo fotowoltaika" fill style={{ objectFit: "contain" }} />
           </Box>
@@ -158,7 +158,7 @@ const Navbar = (): JSX.Element => {
                   <MenuItem onClick={closeNavMenu}>
                     <Stack direction="row" spacing={1}>
                       <SettingsIcon color="secondary" />
-                      <Link href="/admin/projects#main">
+                      <Link href="/admin/realizations#main">
                         <Typography textAlign="center" color="secondary" component="span">
                           Realizacje
                         </Typography>
@@ -243,28 +243,18 @@ const Navbar = (): JSX.Element => {
                   <MenuItem onClick={closeNavMenuLg} divider>
                     <Stack direction="row" alignItems="center" spacing={1}>
                       <SettingsIcon sx={{ fontSize: "medium" }} />
-                      <Link href="/admin/projects#main">
+                      <Link href="/admin/realizations#main">
                         <Typography textAlign="center" component="span">
-                          Projects
+                          Realizacje
                         </Typography>
                       </Link>
                     </Stack>
                   </MenuItem>
-                  {/* <MenuItem onClick={closeNavMenuLg} divider>
-                    <Stack direction="row" alignItems="center" spacing={1}>
-                    <SettingsIcon sx={{fontSize:"medium"}}/>
-                      <Link href="/admin/carrier">
-                        <Typography textAlign="center" component="span">
-                          Carrier
-                        </Typography>
-                      </Link>
-                    </Stack>
-                  </MenuItem> */}
                   <MenuItem onClick={closeNavMenuLg} divider>
                     <Stack direction="row" alignItems="center" spacing={1}>
                       <LogoutIcon sx={{ fontSize: "medium" }} />
                       <Typography textAlign="center">
-                        <a href="/api/auth/logout">Log out</a>
+                        <a href="/api/auth/logout">Wyloguj</a>
                       </Typography>
                     </Stack>
                   </MenuItem>
