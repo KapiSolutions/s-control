@@ -55,7 +55,7 @@ const RealizationItem = ({ realization }: Props): JSX.Element => {
         onClick={() => {
           if (!redirecting) {
             router.push({
-              pathname: "/realizations/[pid]",
+              pathname: "/realizacje/[pid]",
               query: { pid: realization._id },
               hash: "main",
             });
