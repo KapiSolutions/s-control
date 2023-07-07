@@ -36,7 +36,7 @@ const RealizationItemAdmin = ({ realization }: Props): JSX.Element => {
   const [openDialog, setOpenDialog] = useState(false);
   const [loading, seLoading] = useState(false);
   const [redirecting, setRedirecting] = useState(false);
-
+  const realizationDate = realization.realizationDate ? new Date(realization.realizationDate).toLocaleDateString() : "";
   const handleOpen = () => {
     setOpenDialog(true);
   };
@@ -64,10 +64,10 @@ const RealizationItemAdmin = ({ realization }: Props): JSX.Element => {
     setOpenDialog(false);
     try {
       // showSnackBar("default", "Deleting...");
-      await axios.delete(`/api/db/delete-by-id/?dbName=Data&collectionName=realizations&id=${realization._id}`);
+      await axios.delete(`/api/db/delete-by-id/?dbName=Data&collectionName=Realizations&id=${realization._id}`);
       showSnackBar("success", "Projekt pomyślnie usunięty!");
       const revalidateData = {
-        paths: ["/", `/realizations/${realization._id}`],
+        paths: ["/", `/realizacje/${realization._id}`],
       };
       await axios.post("/api/revalidate/", revalidateData);
       showSnackBar("success", "Rewalidacja zakońoczna!");
@@ -91,7 +91,7 @@ const RealizationItemAdmin = ({ realization }: Props): JSX.Element => {
 
           {isMobile ? null : (
             <Grid item sm={3} lg={1}>
-              <Typography variant="body1">{realization.realizationDate?.toDateString()}</Typography>
+              <Typography variant="body1">{realizationDate}</Typography>
             </Grid>
           )}
 
