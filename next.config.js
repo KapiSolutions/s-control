@@ -11,8 +11,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "**.dropboxusercontent.com",
-        pathname: "/cd/0/inline/**",
+        hostname: "i.postimg.cc",
       },
     ],
   },
