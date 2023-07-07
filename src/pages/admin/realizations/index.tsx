@@ -4,10 +4,9 @@ import PostAddIcon from "@mui/icons-material/PostAdd";
 import RealizationItemAdmin from "@/components/admin/realizations/RealizationItemAdmin";
 import type { Realizations } from "@/utils/schema/realization";
 import Link from "next/link";
-// import { connectDB, client } from "@/utils/mongodb";
+import { connectDB, client } from "@/utils/mongodb";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import { NextSeo } from "next-seo";
-import realizations from "@/tmp/realizations.json";
 
 type Props = {
   realizations: Realizations;
@@ -72,43 +71,35 @@ export default function AdminRealizationsPage({ realizations }: Props): JSX.Elem
 export const getServerSideProps = withPageAuthRequired({
   // withPageAuthRequired checks if the session is authenticated, if not then redirect to Auth0 login page
   async getServerSideProps(context) {
-    // const dbName = "Data";
-    // const realizationsCollection = "realizations";
-    // let sortedrealizations = null;
+    const dbName = "Data";
+    const collectionName = "Realizations";
+    let sortedrealizations = null;
 
-    // function parseDate(input: string) {
-    //   const parts = input.match(/(\d+)/g);
-    //   if (parts !== null && parts.length === 3) {
-    //     const year = parseInt(parts[2], 10);
-    //     const month = parseInt(parts[1], 10) - 1;
-    //     const day = parseInt(parts[0], 10);
-    //     return new Date(year, month, day).getTime();
-    //   } else {
-    //     return 0;
-    //   }
-    // }
-    // try {
-    //   // Connect to MongoDB
-    //   await connectDB();
-    //   // Access the specified database and collection
-    //   const db = client.db(dbName);
-    //   const collection = db.collection(realizationsCollection);
-    //   // Retrieve all documents in the collection
-    //   const realizations = await collection.find().toArray();
-    //   // Sort documents by date
-    //   sortedrealizations = realizations.sort(
-    //     (a: { date: string }, b: { date: string }) => parseDate(b.date) - parseDate(a.date)
-    //   );
-    // } catch (error) {
-    //   console.log(error);
-    // } finally {
-    //   // Close the MongoDB connection
-    //   client.close();
-    // }
+    function parseDate(input: string) {
+      return new Date(input).getTime();
+    }
+    try {
+      // Connect to MongoDB
+      await connectDB();
+      // Access the specified database and collection
+      const db = client.db(dbName);
+      const collection = db.collection(collectionName);
+      // Retrieve all documents in the collection
+      const realizations = await collection.find().toArray();
+      // Sort documents by date
+      sortedrealizations = realizations.sort(
+        (a: { realizationDate: string }, b: { realizationDate: string }) =>
+          parseDate(b.realizationDate) - parseDate(a.realizationDate)
+      );
+    } catch (error) {
+      console.log(error);
+    } finally {
+      // Close the MongoDB connection
+      client.close();
+    }
     return {
       props: {
-        // realizations: JSON.parse(JSON.stringify(sortedrealizations)),
-        realizations: realizations,
+        realizations: JSON.parse(JSON.stringify(sortedrealizations)),
       },
     };
   },
