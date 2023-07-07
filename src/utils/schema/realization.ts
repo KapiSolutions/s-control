@@ -15,6 +15,11 @@ export const initValues = {
   mainImage: "",
   images: "",
   description: "",
+  prvClientName: "",
+  prvClientEmail: "",
+  prvClientTelephone: "",
+  prvClientAddress: "",
+  prvComments: "",
 };
 
 export type Realization = {
@@ -33,6 +38,11 @@ export type Realization = {
   mainImage: string;
   images: string;
   description: string;
+  prvClientName: string,
+  prvClientEmail: string,
+  prvClientTelephone: string,
+  prvClientAddress: string,
+  prvComments: string,
 };
 export interface Realizations extends Array<Realization> {}
 
@@ -61,4 +71,9 @@ export const schema = yup.object().shape({
   mainImage: yup.string().required(reqMsg).max(maxLength, limitMsg),
   images: yup.string().max(maxLength, limitMsg),
   description: yup.string().required(reqMsg).max(maxLength, limitMsg),
+  prvClientName: yup.string().max(maxLength, limitMsg),
+  prvClientEmail: yup.string().max(maxLength, limitMsg),
+  prvClientTelephone: yup.string().max(maxLength, limitMsg),
+  prvClientAddress: yup.string().max(maxLength, limitMsg),
+  prvComments: yup.string().max(maxLength, limitMsg),
 });
