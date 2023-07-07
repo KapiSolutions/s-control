@@ -20,6 +20,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Realization, initValues, schema } from "@/utils/schema/realization";
 import { useSnackbar, VariantType } from "notistack";
+import { useRouter } from "next/router";
 import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
 import RealizationOverview from "@/components/RealizationOverview";
@@ -30,6 +31,7 @@ type Props = {
 };
 
 const RealizationTemplate = ({ realization }: Props): JSX.Element => {
+  const router = useRouter();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [showPreview, setShowPreview] = useState(false);
   const theme = useTheme();
@@ -49,7 +51,7 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
     resolver: yupResolver(schema) as Resolver<Realization>,
     defaultValues: realization ? realization : initValues,
   });
-
+  const editMode = realization ? true : false;
   // Show snackbar on success or error
   const showSnackBar = useCallback(
     (variant: VariantType, message: string) => {
@@ -162,15 +164,53 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
     formatUrls("images", data.images);
     setShowPreview(!showPreview);
   };
+  const revalidatePaths = async (id: string) => {
+    const revalidateData = {
+      paths: ["/", `/realizacje/${id}`],
+    };
+    try {
+      await axios.post("/api/revalidate/", revalidateData);
+    } catch (err) {
+      const errors = err as Error;
+      console.log("errMsg: ", errors.message);
+      showSnackBar("warning", "Revalidation Error");
+    }
+  };
 
   const submitForm = async () => {
     setLoading(true);
-    // Use data after urls formatting
     const data = getValues();
     try {
-      //   await axios.post("/api/sendEmail/", { payload: data });
-      //   reset();
-      showSnackBar("success", "Dodano nową realizację!");
+      let status = 0;
+      let docId;
+      const payload = {
+        dbName: "Data",
+        collectionName: "Realizations",
+        documentData: data,
+      };
+      if (editMode) {
+        // update existing project
+        const res = await axios.put("/api/db/update/", payload);
+        status = res.status;
+        docId = data._id;
+      } else {
+        // add new project
+        const res = await axios.post("/api/db/insert-one/", payload);
+        status = res.status;
+        docId = res.data.insertedId;
+      }
+      if (status === 204) {
+        // no changes to made
+        setShowPreview(false);
+        showSnackBar("warning", "Brak zmian do wprowadzenia.");
+      } else if (status === 200) {
+        // request was successful
+        // await revalidatePaths(docId);
+        setShowPreview(false);
+        reset(); //clear fields
+        showSnackBar("success", `Pomyślnie ${editMode ? "zaktualizowano!" : "dodano!"}`);
+        router.push("/admin/realizations#main");
+      }
     } catch (err) {
       const errors = err as Error;
       console.log("errMsg: ", errors.message);
@@ -252,7 +292,7 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
             variant="contained"
             sx={{ mt: 4 }}
           >
-            {loading ? <CircularProgress size={26} /> : realization ? "Edytuj" : "Dodaj"}
+            {loading ? <CircularProgress size={26} /> : editMode ? "Edytuj" : "Dodaj"}
           </Button>
         </Container>
       ) : (
