@@ -9,6 +9,7 @@ export const initValues = {
   atrPanels: "",
   atrInverter: "",
   atrPump: "",
+  atrBattery: "",
   tags: "",
   realizationDate: null,
   publishedDate: new Date(),
@@ -32,17 +33,18 @@ export type Realization = {
   atrPanels: string;
   atrInverter: string;
   atrPump: string;
+  atrBattery: string;
   tags: string;
   realizationDate: null | Date;
   publishedDate: null | Date;
   mainImage: string;
   images: string;
   description: string;
-  prvClientName: string,
-  prvClientEmail: string,
-  prvClientTelephone: string,
-  prvClientAddress: string,
-  prvComments: string,
+  prvClientName: string;
+  prvClientEmail: string;
+  prvClientTelephone: string;
+  prvClientAddress: string;
+  prvComments: string;
 };
 export interface Realizations extends Array<Realization> {}
 
@@ -59,6 +61,7 @@ export const schema = yup.object().shape({
   atrPanels: yup.string().max(maxLength, limitMsg),
   atrInverter: yup.string().max(maxLength, limitMsg),
   atrPump: yup.string().max(maxLength, limitMsg),
+  atrBattery: yup.string().max(maxLength, limitMsg),
   tags: yup.string().max(maxLength, limitMsg),
   realizationDate: yup
     .date()
