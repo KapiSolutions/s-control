@@ -2,7 +2,7 @@
     {
         "_id": "adsdd323r2342",
         "title": "Projekt 1",
-        "mainImage": "https://www.dropbox.com/s/3t19q3mo67dhl9n/Hotpot%2888%29%281%29.png?dl=1",
+        "mainImage": "https://i.postimg.cc/VNNjFF5C/Hotpot-88-1-4.png",
         "realizationDate": null,
         "publishedDate": null,
         "author": "S-control",
@@ -13,13 +13,13 @@
         "atrInverter": "Model falownika",
         "atrPump": "Model pompy",
         "atrLocalization": "Krosno",
-        "images": "https://www.dropbox.com/s/y94oratmz5aa5zq/Hotpot%2889%29%281%29.png?dl=1 https://www.dropbox.com/s/3t19q3mo67dhl9n/Hotpot%2888%29%281%29.png?dl=1",
+        "images": "https://www.dropbox.com/s/y94oratmz5aa5zq/Hotpot%2889%29%281%29.png?raw=1 https://www.dropbox.com/s/3t19q3mo67dhl9n/Hotpot%2888%29%281%29.png?raw=1",
         "tags": "fotowoltaika, krosno, pompy ciepła"
       },
       {
         "_id": "adsdd323r23s42",
         "title": "Projekt 2",
-        "mainImage": "https://www.dropbox.com/s/y94oratmz5aa5zq/Hotpot%2889%29%281%29.png?dl=1",
+        "mainImage": "https://www.dropbox.com/s/y94oratmz5aa5zq/Hotpot%2889%29%281%29.png?raw=1",
         "realizationDate": null,
         "publishedDate": null,
         "author": "S-control",
@@ -30,7 +30,7 @@
         "atrInverter": "Model falownika",
         "atrPump": "",
         "atrLocalization": "Kraków",
-        "images": "https://www.dropbox.com/s/y94oratmz5aa5zq/Hotpot%2889%29%281%29.png?dl=1 https://www.dropbox.com/s/3t19q3mo67dhl9n/Hotpot%2888%29%281%29.png?dl=1",
+        "images": "https://www.dropbox.com/s/y94oratmz5aa5zq/Hotpot%2889%29%281%29.png?raw=1 https://www.dropbox.com/s/3t19q3mo67dhl9n/Hotpot%2888%29%281%29.png?raw=1",
         "tags": "fotowoltaika, kraków"
       }
 ]
