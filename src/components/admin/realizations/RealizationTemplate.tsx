@@ -1,7 +1,17 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { useForm, Controller, SubmitHandler, Resolver } from "react-hook-form";
+import { useForm, Controller, Resolver } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Button, TextField, Stack, Box, useTheme, useMediaQuery, CircularProgress } from "@mui/material";
+import {
+  Button,
+  TextField,
+  Stack,
+  Box,
+  Container,
+  useTheme,
+  Typography,
+  useMediaQuery,
+  CircularProgress,
+} from "@mui/material";
 import dayjs from "dayjs";
 import "dayjs/locale/pl";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -12,6 +22,7 @@ import { Realization, initValues, schema } from "@/utils/schema/realization";
 import { useSnackbar, VariantType } from "notistack";
 import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
+import RealizationOverview from "@/components/RealizationOverview";
 
 //Define Types
 type Props = {
@@ -31,6 +42,7 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
     setValue,
     getValues,
     reset,
+    watch,
     control,
     formState: { errors },
   } = useForm<Realization>({
@@ -53,6 +65,13 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [enqueueSnackbar, closeSnackbar]
   );
+
+  // Close preview on evry change of input form
+  useEffect(() => {
+    watch(() => setShowPreview(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch]);
+
   // Scroll and set focus on the error field
   useEffect(() => {
     const errArray = Object.keys(errors);
@@ -75,7 +94,7 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
     document.getElementsByName("showPreviewRealizationButton")[0].scrollIntoView({ block: "start", inline: "nearest" });
   };
 
-  const getInput = (name: keyof Realization, label: string, fullWidth = false, type = "text") => {
+  const getInput = (name: keyof Realization, label: string, fullWidth = false, type = "text", rows = 3) => {
     return (
       <Controller
         name={name}
@@ -114,7 +133,7 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
                 disabled={loading}
                 fullWidth={fullWidth}
                 multiline={type === "typeArea"}
-                rows={3}
+                minRows={rows}
               />
             );
           }
@@ -123,10 +142,31 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
     );
   };
 
+  // Convert GoogleDrive preview url's to the direct url's
+  const formatUrls = (name: keyof Realization, input: string) => {
+    const urls = input.trim().replaceAll(" ", "\n").split("\n");
+    urls.map((url, idx) => {
+      if (url.includes("drive.google.com")) {
+        const id = url.substring(url.indexOf("/d/") + 3, url.lastIndexOf("/view?"));
+        const directUrl = `https://lh3.googleusercontent.com/d/${id}`;
+        urls[idx] = directUrl;
+      }
+    });
+    const finalUrls = urls.join("\n");
+    setValue(name, finalUrls);
+  };
+
+  const handlePreview = () => {
+    const data = getValues();
+    formatUrls("mainImage", data.mainImage);
+    formatUrls("images", data.images);
+    setShowPreview(!showPreview);
+  };
+
   const submitForm = async () => {
     setLoading(true);
+    // Use data after urls formatting
     const data = getValues();
-    console.log(data);
     try {
       //   await axios.post("/api/sendEmail/", { payload: data });
       //   reset();
@@ -141,13 +181,13 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
   };
   return (
     <Box>
-      <form onSubmit={handleSubmit(() => setShowPreview(!showPreview))}>
+      <form onSubmit={handleSubmit(handlePreview)}>
         <Stack
           direction={isMobile ? "column" : "row"}
           useFlexGap
+          flexWrap="wrap"
           justifyContent="center"
           spacing={isMobile ? 0 : 2}
-          sx={{ flexWrap: "wrap" }}
         >
           {getInput("title", "Nazwa")}
           {getInput("author", "Autor")}
@@ -157,16 +197,35 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
           {getInput("atrPanels", "Model paneli fotowoltaicznych")}
           {getInput("atrInverter", "Model falownika")}
           {getInput("atrPump", "Model pompy ciepła")}
-          {getInput("tags", "Tagi")}
+          {getInput("atrBattery", "Model magazynu en.")}
           {getInput("realizationDate", "Data wykonania", false, "typeDate")}
           {getInput("publishedDate", "Data publikacji", false, "typeDate")}
+          {getInput("tags", "Tagi", true)}
           {getInput("mainImage", "Główny obraz", true)}
-          {getInput("images", "Pozostałe obrazy", true)}
+          {getInput("images", "Pozostałe obrazy", true, "typeArea", 1)}
           {getInput("description", "Opis", true, "typeArea")}
         </Stack>
-        {/* <Box sx={{ width: "100%" }}></Box> */}
 
-        <Box sx={{ display: "flex", justifyContent: "right", mt: 1 }}>
+        {/* Private data */}
+        <Typography variant="h5" align="left" sx={{ mt: 2 }}>
+          Dane klienta
+        </Typography>
+        <Stack
+          direction={isMobile ? "column" : "row"}
+          useFlexGap
+          flexWrap="wrap"
+          justifyContent="center"
+          spacing={isMobile ? 0 : 2}
+          sx={{ backgroundColor: "#fdfdfd", mt: 2, p: 1, borderRadius: 2, border: "1px solid #6c6c6c" }}
+        >
+          {getInput("prvClientName", "Imię i nazwisko")}
+          {getInput("prvClientEmail", "Adres email")}
+          {getInput("prvClientTelephone", "Telefon")}
+          {getInput("prvClientAddress", "Adres")}
+          {getInput("prvComments", "Uwagi", true, "typeArea")}
+        </Stack>
+
+        <Box sx={{ display: "flex", justifyContent: "right", mt: 2 }}>
           <Button
             name="showPreviewRealizationButton"
             type="submit"
@@ -175,14 +234,14 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
             fullWidth={isMobile ? true : false}
             disabled={loading}
           >
-            {loading ? <CircularProgress size={26} /> : "Pokaż podgląd"}
+            {loading ? <CircularProgress size={26} /> : showPreview ? "Zamknij podgląd" : "Pokaż podgląd"}
           </Button>
         </Box>
       </form>
 
       {showPreview ? (
-        <>
-          {/* <ProjectOverview project={getValues()} /> */}
+        <Container sx={{ mt: 2 }}>
+          <RealizationOverview realization={getValues()} />
           {/* Submit button */}
           <Button
             color="primary"
@@ -195,7 +254,7 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
           >
             {loading ? <CircularProgress size={26} /> : realization ? "Edytuj" : "Dodaj"}
           </Button>
-        </>
+        </Container>
       ) : (
         isMobile && (
           <Box sx={{ position: "fixed", right: "20px", bottom: "20px", zIndex: 1 }}>
