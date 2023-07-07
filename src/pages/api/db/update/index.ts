@@ -13,8 +13,6 @@ const checkForChanges = (existingObj: Record<string, any>, updatedObj: Record<st
     }
     if (existingObj[key] !== updatedObj[key]) {
       updatedFields[key] = updatedObj[key];
-    } else {
-      updatedFields[key] = existingObj[key];
     }
   }
 
@@ -30,7 +28,7 @@ async function handle(req: NextApiRequest, res: NextApiResponse): Promise<void> 
         return;
       }
       await schema.validate(documentData);
-      
+
       const docId = documentData._id;
       // Validate the doc ID format
       if (!docId || !ObjectId.isValid(docId)) {
