@@ -2,6 +2,10 @@
 const production = process.env.NODE_ENV == "production";
 const nextConfig = {
   reactStrictMode: true,
+  i18n: {
+    locales: ["pl"],
+    defaultLocale: "pl",
+  },
   images: {
     remotePatterns: [
       {
