@@ -23,35 +23,37 @@ const Contact = (): JSX.Element => {
     defaultMatches: true,
   });
   return (
-    <Container name="ContactSection" sx={{minWidth: "98vw"}}>
-      <ContentHeader primary="Szybki kontakt" secondary="Skorzystaj z naszego formularza" />
-      <Stack alignItems="center" justifyContent="center"direction={isMobile ? "column" : "row"} >
-        <ContactForm />
-        <Box sx={{ width: isMobile ? "100%" : "50%", ml: isMobile ? 0 : 5, mt: isMobile ? 4 : 0 }}>
-          <MapWrapper
-            provider={osm}
-            height={280}
-            defaultCenter={[49.85, 21.4]}
-            metaWheelZoom={true}
-            zoom={zoom}
-            maxZoom={14}
-            animate={false}
-            onBoundsChanged={({ zoom }: { zoom: number }) => {
-              setZoom(zoom);
-            }}
-          >
-            <Marker width={50} color="orange" anchor={[49.694, 21.663]} />
-            {zoom === 8 && (
-              <Overlay anchor={[49.98, 21.2]} offset={[120, 79]}>
-                <Box sx={{ position: "relative", width: "200px", height: "200px" }}>
-                  <Image src={arrow} fill alt="Tu jesteśmy" style={{ objectFit: "contain" }} />
-                </Box>
-              </Overlay>
-            )}
-          </MapWrapper>
-        </Box>
-      </Stack>
-    </Container>
+    <Box>
+      <Container name="ContactSection">
+        <ContentHeader primary="Szybki kontakt" secondary="Skorzystaj z naszego formularza" />
+        <Stack alignItems="center" justifyContent="center" direction={isMobile ? "column" : "row"}>
+          <ContactForm />
+          <Box sx={{ width: isMobile ? "100%" : "50%", ml: isMobile ? 0 : 5, mt: isMobile ? 4 : 0 }}>
+            <MapWrapper
+              provider={osm}
+              height={280}
+              defaultCenter={[49.85, 21.4]}
+              metaWheelZoom={true}
+              zoom={zoom}
+              maxZoom={14}
+              animate={false}
+              onBoundsChanged={({ zoom }: { zoom: number }) => {
+                setZoom(zoom);
+              }}
+            >
+              <Marker width={50} color="orange" anchor={[49.694, 21.663]} />
+              {zoom === 8 && (
+                <Overlay anchor={[49.98, 21.2]} offset={[120, 79]}>
+                  <Box sx={{ position: "relative", width: "200px", height: "200px" }}>
+                    <Image src={arrow} fill alt="Tu jesteśmy" style={{ objectFit: "contain" }} />
+                  </Box>
+                </Overlay>
+              )}
+            </MapWrapper>
+          </Box>
+        </Stack>
+      </Container>
+    </Box>
   );
 };
 
