@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Stack, Typography, useTheme, useMediaQuery, Container } from "@mui/material";
+import { Box, Grid, Stack, Typography, useTheme, useMediaQuery, Container, Divider } from "@mui/material";
 import type { Realization } from "@/utils/schema/realization";
 import ContentHeader from "./ContentHeader";
 import Image from "next/image";
@@ -101,8 +101,9 @@ const RealizationOverview = ({ realization }: Props): JSX.Element => {
       )}
 
       {/* Hash tags */}
-      <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
-        {realization.tags?.split(",").map((tag, idx) => (
+      <Divider orientation="horizontal" sx={{ mt: 2 }} />
+      <Stack direction="row" useFlexGap flexWrap="wrap" spacing={2} sx={{ mt: 2 }}>
+        {realization.tags?.split(" ").map((tag, idx) => (
           <Typography variant="body2" key={idx}>
             #{tag.trim()}
           </Typography>
