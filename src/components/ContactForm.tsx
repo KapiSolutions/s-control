@@ -1,4 +1,4 @@
-import React, { useRef, useState, useCallback, forwardRef, ForwardedRef } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, TextField, Stack, Box, useTheme, useMediaQuery, CircularProgress } from "@mui/material";
@@ -34,22 +34,39 @@ const ContactForm = (): JSX.Element => {
     setCaptchaResult(captchaCode);
   };
 
+  // Scroll and set focus on the error field
+  useEffect(() => {
+    const errArray = Object.keys(errors);
+    // check for errors
+    if (errArray.length > 0) {
+      const key = errArray[0] as keyof Contact;
+      const property = errors[key];
+
+      if (typeof property === "object" && "message" in property) {
+        // single field
+        document.getElementsByName(errArray[0])[0].focus();
+        document.getElementsByName(errArray[0])[0].scrollIntoView({ block: "center", inline: "nearest" });
+      }
+    }
+  }, [errors]);
+
   const onSubmit: SubmitHandler<Contact> = async (data) => {
     setLoading(true);
+    showSnackBar("success", "Wiadomość wysłana, dziękujemy!");
     // Show reCaptcha widget
     if (!showReCaptcha) {
       setShowReCaptcha(true);
       setLoading(false);
       return;
     }
-
+    // Check for captcha code
     if (!captchaResult) {
       setLoading(false);
       return;
     }
 
+    // Validate captcha and send email to the user
     try {
-      // Validate captcha and send email to the user
       await axios.post("/api/sendEmail/", { payload: data, captcha: captchaResult });
       reset();
       setShowReCaptcha(false);
@@ -69,12 +86,15 @@ const ContactForm = (): JSX.Element => {
     (variant: VariantType, message: string) => {
       enqueueSnackbar(message, {
         variant: variant,
-        action: (key) =>
-          isMobile ? null : (
-            <Button size="small" color="inherit" onClick={() => closeSnackbar(key)}>
-              <CloseIcon />
-            </Button>
-          ),
+        action: (key) => (
+          <>
+            {!isMobile && (
+              <Button size="small" color="inherit" onClick={() => closeSnackbar(key)}>
+                <CloseIcon />
+              </Button>
+            )}
+          </>
+        ),
       });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -87,6 +107,7 @@ const ContactForm = (): JSX.Element => {
         control={control}
         render={({ field: { onChange, value } }) => (
           <TextField
+            name={name}
             helperText={Boolean(errors[name]) ? errors[name]?.message : undefined}
             error={Boolean(errors[name])}
             onChange={onChange}
