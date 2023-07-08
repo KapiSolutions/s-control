@@ -205,7 +205,7 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
         showSnackBar("warning", "Brak zmian do wprowadzenia.");
       } else if (status === 200) {
         // request was successful
-        // await revalidatePaths(docId);
+        await revalidatePaths(docId);
         setShowPreview(false);
         reset(); //clear fields
         showSnackBar("success", `Pomyślnie ${editMode ? "zaktualizowano!" : "dodano!"}`);
