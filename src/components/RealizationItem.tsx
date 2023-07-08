@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import {
   Box,
   Skeleton,
@@ -13,11 +14,12 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import Image from "next/image";
+import type { Realization } from "@/utils/schema/realization";
+import PowerIcon from "@mui/icons-material/Power";
+import PlaceIcon from '@mui/icons-material/Place';
+
 
 //Define Types
-import type { Realization } from "@/utils/schema/realization";
-import { useRouter } from "next/router";
-
 type Props = {
   realization: Realization | null;
 };
@@ -89,6 +91,11 @@ const RealizationItem = ({ realization }: Props): JSX.Element => {
         <Typography variant="body2" sx={styles.description} component="div">
           {realization.description}
         </Typography>
+
+        <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+          <Chip icon={<PowerIcon />} label={realization.atrPower} />
+          <Chip icon={<PlaceIcon />} label={realization.atrLocalization} />
+        </Stack>
       </Paper>
       <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={redirecting}>
         <CircularProgress color="inherit" />
