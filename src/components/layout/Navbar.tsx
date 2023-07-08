@@ -24,7 +24,7 @@ import logo from "../../../public/img/darkLogo.png";
 import Image from "next/image";
 
 const pages = ["O Nas", "Fotowoltaika", "Pompy Ciepła", "Realizacje", "Kontakt"];
-const sections = ["AboutSection", "FotoSection", "HeatPumpsSection", "RealizationsSection", "ContactSection"];
+const sections = ["AboutUsSection", "PhotovoltaicsSection", "HeatPumpsSection", "RealizationsSection", "ContactSection"];
 
 const Navbar = (): JSX.Element => {
   const router = useRouter();
@@ -36,6 +36,7 @@ const Navbar = (): JSX.Element => {
     defaultMatches: true,
   });
   const navBackground = "rgba(255, 255, 255, 0.75)";
+  const scrollOffset = 70;
 
   // Mobile menu handlers
   const openNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -57,7 +58,7 @@ const Navbar = (): JSX.Element => {
     if (window.location.hash && router.pathname == "/") {
       const name = window.location.hash.replace("#", "");
       const element = document.getElementsByName(name)[0];
-      window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
+      window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "smooth" });
     }
   }, [router.pathname]);
 
@@ -66,7 +67,7 @@ const Navbar = (): JSX.Element => {
       const element = document.getElementsByName(name)[0];
       window.history.pushState(null, "", `/#${name}`); //add to history without loading the page
       // window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
-      window.scrollTo({ top: element.offsetTop - 50, behavior: "smooth" });
+      window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "smooth" });
     } else {
       router.push(`/#${name}`, undefined, { scroll: false });
     }
