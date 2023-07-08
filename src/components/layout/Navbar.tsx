@@ -24,7 +24,13 @@ import logo from "../../../public/img/darkLogo.png";
 import Image from "next/image";
 
 const pages = ["O Nas", "Fotowoltaika", "Pompy Ciepła", "Realizacje", "Kontakt"];
-const sections = ["AboutUsSection", "PhotovoltaicsSection", "HeatPumpsSection", "RealizationsSection", "ContactSection"];
+const sections = [
+  "AboutUsSection",
+  "PhotovoltaicsSection",
+  "HeatPumpsSection",
+  "RealizationsSection",
+  "ContactSection",
+];
 
 const Navbar = (): JSX.Element => {
   const router = useRouter();
@@ -35,7 +41,7 @@ const Navbar = (): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-  const navBackground = "rgba(255, 255, 255, 0.75)";
+  const navBackground = "rgba(255, 255, 255, 0.8)";
   const scrollOffset = 70;
 
   // Mobile menu handlers
@@ -84,7 +90,7 @@ const Navbar = (): JSX.Element => {
 
   return (
     <Paper
-      elevation={1}
+      elevation={3}
       sx={{
         zIndex: 1000,
         position: "fixed",
@@ -147,7 +153,7 @@ const Navbar = (): JSX.Element => {
                     closeNavMenu();
                     scrollToSection(sections[idx]);
                   }}
-                  // divider={idx == pages.length - 1 ? true : false}
+                  divider={idx == pages.length - 1 ? true : false}
                 >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -158,9 +164,9 @@ const Navbar = (): JSX.Element => {
                 <Box sx={{ mt: 2 }}>
                   <MenuItem onClick={closeNavMenu}>
                     <Stack direction="row" spacing={1}>
-                      <SettingsIcon color="secondary" />
+                      <SettingsIcon />
                       <Link href="/admin/realizations#main">
-                        <Typography textAlign="center" color="secondary" component="span">
+                        <Typography textAlign="center" component="span">
                           Realizacje
                         </Typography>
                       </Link>
@@ -168,8 +174,8 @@ const Navbar = (): JSX.Element => {
                   </MenuItem>
                   <MenuItem onClick={closeNavMenu}>
                     <Stack direction="row" spacing={1}>
-                      <LogoutIcon color="secondary" />
-                      <Typography textAlign="center" color="secondary" component="span">
+                      <LogoutIcon />
+                      <Typography textAlign="center" component="span">
                         <a href="/api/auth/logout">Wyloguj</a>
                       </Typography>
                     </Stack>
