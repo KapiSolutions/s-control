@@ -6,6 +6,9 @@ import Dotation from "@/components/sections/Dotation";
 import Contact from "@/components/sections/Contact";
 import Realizations from "@/components/sections/realizations/Realizations";
 import { connectDB, client } from "@/utils/mongodb";
+import Photovoltaics from "@/components/sections/Photovoltaics";
+import HeatPumps from "@/components/sections/HeatPumps";
+import AboutUs from "@/components/sections/AboutUs";
 
 type Props = {
   realizations: Realizations;
@@ -14,14 +17,17 @@ type Props = {
 export default function HomePage({ realizations }: Props): JSX.Element {
   return (
     <>
-      <NextSeo title="S-control | Twoja fotowoltaika" />
+      <NextSeo title="S-control | Instalacje Fotowoltaiczne" />
       <Box sx={{ ml: 2 }}>
         <BreadCrumbs items={null} />
       </Box>
       <Stack spacing={6}>
         <WhyUs />
         <Dotation />
+        <Photovoltaics />
+        <HeatPumps />
         <Realizations realizations={realizations} />
+        <AboutUs />
         <Contact />
       </Stack>
     </>
