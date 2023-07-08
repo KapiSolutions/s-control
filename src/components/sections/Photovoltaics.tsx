@@ -1,7 +1,6 @@
 import React from "react";
-import { Box, Container, Paper, Stack, Typography, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Container, Stack, Typography, useTheme, useMediaQuery } from "@mui/material";
 import ContentHeader from "../ContentHeader";
-
 
 const Photovoltaics = (): JSX.Element => {
   const theme = useTheme();
@@ -9,13 +8,12 @@ const Photovoltaics = (): JSX.Element => {
     defaultMatches: true,
   });
 
-
   return (
-    <Container sx={{minHeight: "100vh"}} name="PhotovoltaicsSection">
-      <ContentHeader primary="Instalacje Fotowoltaiczne" secondary="Zielona energia dla Twojego domu" />
-     
-
-    </Container>
+    <Box>
+      <Container sx={{ minHeight: "100vh" }} name="PhotovoltaicsSection">
+        <ContentHeader primary="Instalacje Fotowoltaiczne" secondary="Zielona energia dla Twojego domu" />
+      </Container>
+    </Box>
   );
 };
 
