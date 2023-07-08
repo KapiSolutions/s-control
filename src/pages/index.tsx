@@ -14,16 +14,7 @@ type Props = {
 export default function HomePage({ realizations }: Props): JSX.Element {
   return (
     <>
-      <NextSeo
-        title="S-control | Twoja fotowoltaika"
-        description="Opis"
-        additionalLinkTags={[
-          {
-            rel: "icon",
-            href: "/favicon.ico",
-          },
-        ]}
-      />
+      <NextSeo title="S-control | Twoja fotowoltaika" />
       <Box sx={{ ml: 2 }}>
         <BreadCrumbs items={null} />
       </Box>
