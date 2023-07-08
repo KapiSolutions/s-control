@@ -34,7 +34,7 @@ export default function AdminNewProjectPage(): JSX.Element {
         <BreadCrumbs items={breadcrumbs} />
       </Box>
       <Container>
-        <Typography variant="h4" align={isMobile ? "center" : "left"}>
+        <Typography variant="h4" sx={{mb:2, mt:2}}>
           Nowa Realizacja
         </Typography>
         <RealizationTemplate realization={null} />

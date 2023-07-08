@@ -28,7 +28,7 @@ export default function AdminEditRealizationPage({ realization }: Props): JSX.El
         <BreadCrumbs items={breadcrumbs} />
       </Box>
       <Container>
-        <Typography variant="h4" align={isMobile ? "center" : "left"}>
+        <Typography variant="h4" align={isMobile ? "center" : "left"} sx={{mb:2, mt:2}}>
           Edycja realizacji
         </Typography>
         {realization ? <RealizationTemplate realization={realization} /> : "realization not found."}
