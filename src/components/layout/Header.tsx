@@ -33,11 +33,12 @@ const Header = (): JSX.Element => {
 
           <Typography
             color="whitesmoke"
-            variant={isMobile ? "h5" : "h3"}
+            variant={isMobile ? "h5" : "h4"}
+            component="p"
             mb={2}
             sx={{
               textTransform: "uppercase",
-              fontWeight: "bold",
+              // fontWeight: "bold",
               backgroundColor: "rgba(0, 0, 0, 0.7)",
               borderRadius: "4px",
               p: 2,
