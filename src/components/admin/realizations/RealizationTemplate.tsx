@@ -7,6 +7,7 @@ import {
   Stack,
   Box,
   Container,
+  Divider,
   useTheme,
   Typography,
   useMediaQuery,
@@ -283,6 +284,7 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
         <Container sx={{ mt: 2 }}>
           <RealizationOverview realization={getValues()} />
           {/* Submit button */}
+          <Divider orientation="horizontal" flexItem sx={{ mt: 4 }} />
           <Button
             color="primary"
             disabled={loading}
@@ -292,7 +294,7 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
             variant="contained"
             sx={{ mt: 4 }}
           >
-            {loading ? <CircularProgress size={26} /> : editMode ? "Edytuj" : "Dodaj"}
+            {loading ? <CircularProgress size={26} /> : editMode ? "Zapisz zmiany" : "Dodaj!"}
           </Button>
         </Container>
       ) : (
