@@ -19,7 +19,7 @@ const Realizations = ({ realizations }: Props): JSX.Element => {
   });
 
   return (
-    <Box sx={{ width: "100vw", minHeight: "90vh" }} name="realizationsSection" component="section">
+    <Box sx={{ width: "100vw", minHeight: "90vh" }} name="RealizationsSection" component="section">
       <Container sx={{ minHeight: "70vh" }}>
         <Box>
           <ContentHeader primary="Nasze realizacje" secondary="Dołącz do grona zadowolonych klientów" />
