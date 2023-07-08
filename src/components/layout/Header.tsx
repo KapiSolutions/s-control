@@ -11,27 +11,44 @@ const Header = (): JSX.Element => {
   });
 
   return (
-    <Box sx={{ height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <Box
+      sx={{
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundImage: "url('/img/main-1.webp')",
+        backgroundPosition: "right",
+      }}
+    >
       <Navbar />
 
       <Container>
         <Stack spacing={isMobile ? 3 : 6} sx={{ textAlign: "left", ml: 2 }}>
-        
           <Box>
-            <Typography variant="h1" component="h1" sx={{ fontWeight: "bold", fontSize: isMobile ? "20vw" : "auto" }}>
+            <Typography variant="h1" component="h1" sx={{ fontWeight: "bold" }}>
               S-control
             </Typography>
-            {/* <Typography variant="body2" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
-              Złap kontrolę nad własnymi rachunkami
-            </Typography> */}
           </Box>
-          
-          <Typography variant={isMobile ? "h5" : "h3"} mb={2} sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
+
+          <Typography
+            color="whitesmoke"
+            variant={isMobile ? "h5" : "h3"}
+            mb={2}
+            sx={{
+              textTransform: "uppercase",
+              fontWeight: "bold",
+              backgroundColor: "rgba(0, 0, 0, 0.7)",
+              borderRadius: "4px",
+              p: 2,
+              maxWidth: "90%",
+            }}
+          >
             Instalacje fotowoltaiczne i pompy ciepła
           </Typography>
-          
+
           <Stack direction="row" spacing={2} sx={{ mt: isMobile ? 2 : 0 }}>
-            {/* <Button variant="outlined" size="large" color="primary">
+            {/* <Button variant="outlined" size="large" color="secondary">
               Wycena
             </Button> */}
             <Button
@@ -49,7 +66,6 @@ const Header = (): JSX.Element => {
               Dowiedz się więcej
             </Button>
           </Stack>
-          
         </Stack>
       </Container>
     </Box>
