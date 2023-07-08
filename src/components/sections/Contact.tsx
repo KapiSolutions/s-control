@@ -23,7 +23,7 @@ const Contact = (): JSX.Element => {
     defaultMatches: true,
   });
   return (
-    <Box>
+    <Box sx={{maxWidth: "100vw"}}>
       <Container name="ContactSection">
         <ContentHeader primary="Szybki kontakt" secondary="Skorzystaj z naszego formularza" />
         <Stack alignItems="center" justifyContent="center" direction={isMobile ? "column" : "row"}>

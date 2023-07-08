@@ -75,46 +75,48 @@ const WhyUs = (): JSX.Element => {
     },
   ];
   return (
-    <Container sx={{mt:2}}>
-      <ContentHeader primary="Co nas wyróżnia" secondary="Nasze 4 filary" />
-      <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap", pt: 4 }} justifyContent="center" useFlexGap>
-        {filars.map((filar, idx) => (
-          <Stack
-            key={idx}
-            alignItems="center"
-            justifyContent="top"
-            sx={{ textAlign: "center", width: isMobile ? "100%" : "23%", minWidth: "250px" }}
-          >
-            <Box
-              sx={{
-                width: "120px",
-                height: "120px",
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                backgroundColor: "primary.main",
-                mb: 2,
-              }}
+    <Box sx={{ maxWidth: "100vw", mt: 2 }}>
+      <Container>
+        <ContentHeader primary="Co nas wyróżnia" secondary="Nasze 4 filary" />
+        <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap", pt: 4 }} justifyContent="center" useFlexGap>
+          {filars.map((filar, idx) => (
+            <Stack
+              key={idx}
+              alignItems="center"
+              justifyContent="top"
+              sx={{ textAlign: "center", width: isMobile ? "100%" : "23%", minWidth: "250px" }}
             >
-              {filar.icon}
-            </Box>
-            <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-              {filar.header}
-            </Typography>
-            {/* <Typography variant="body1">{filar.content}</Typography> */}
-            <Typography variant="body1">{filar.content}</Typography>
-          </Stack>
-        ))}
-      </Stack>
-      <Stack alignItems="center" justifyContent="center" mt={6}  spacing={1}>
-        <Box sx={{ position: "relative", width: "50%", height: "2px", backgroundColor: "primary.main", mb: 3 }}></Box>
-        <Typography name="satisfyBar" variant="h4">
-          {progress}%
-        </Typography>
-        <Typography variant="h5">Zadowolonych klientów</Typography>
-      </Stack>
-    </Container>
+              <Box
+                sx={{
+                  width: "120px",
+                  height: "120px",
+                  borderRadius: "50%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "primary.main",
+                  mb: 2,
+                }}
+              >
+                {filar.icon}
+              </Box>
+              <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+                {filar.header}
+              </Typography>
+              {/* <Typography variant="body1">{filar.content}</Typography> */}
+              <Typography variant="body1">{filar.content}</Typography>
+            </Stack>
+          ))}
+        </Stack>
+        <Stack alignItems="center" justifyContent="center" mt={6} spacing={1}>
+          <Box sx={{ position: "relative", width: "50%", height: "2px", backgroundColor: "primary.main", mb: 3 }}></Box>
+          <Typography name="satisfyBar" variant="h4">
+            {progress}%
+          </Typography>
+          <Typography variant="h5">Zadowolonych klientów</Typography>
+        </Stack>
+      </Container>
+    </Box>
   );
 };
 
