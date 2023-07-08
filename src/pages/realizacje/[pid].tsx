@@ -13,22 +13,45 @@ type Props = { realization: Realization | null };
 
 export default function RealizationOverviewPage({ realization }: Props): JSX.Element {
   const router = useRouter();
-  const breadcrumbs = [{ name: realization ? realization.title : "404", path: `/realizacje/${realization?._id}` }];
-
   if (!realization) {
     return <></>;
   }
+  const breadcrumbs = [{ name: realization ? realization.title : "404", path: `/realizacje/${realization?._id}` }];
+  const publishedDate = realization.publishedDate ? realization.publishedDate.toString() : "2023-05-05T09:00:00+08:00";
 
   return (
     <>
-      <NextSeo title={`S-control | ${realization.title}`} description={realization.description} />
+      <NextSeo
+        title={`S-control | ${realization.title}`}
+        description={realization.description}
+        openGraph={{
+          type: "article",
+          locale: "pl_PL",
+          article: {
+            publishedTime: publishedDate,
+            modifiedTime: publishedDate,
+            authors: ["https://www.facebook.com/scontrol1"],
+            tags: realization.tags?.split(" "),
+          },
+          url: `https://www.s-control.vercel.app/realizacje/${realization?._id}`,
+          images: [
+            {
+              url: realization.mainImage,
+              width: 850,
+              height: 650,
+              alt: `S-control fotowoltaika ${realization.atrLocalization}`,
+            },
+          ],
+          siteName: "S-control Fotowoltaika",
+        }}
+      />
       <ArticleJsonLd
         type="BlogPosting"
         url={`https://s-control.vercel.app/${router.asPath}`}
         title={realization.title}
         images={[realization.mainImage]}
-        datePublished={realization.publishedDate ? realization.publishedDate.toString() : "2023-05-05T09:00:00+08:00"}
-        dateModified={realization.publishedDate ? realization.publishedDate.toString() : "2023-05-05T09:00:00+08:00"}
+        datePublished={publishedDate}
+        dateModified={publishedDate}
         authorName={realization.author}
         description={realization.description}
       />
