@@ -27,7 +27,7 @@ export default function AdminRealizationsPage({ realizations }: Props): JSX.Elem
         <BreadCrumbs items={breadcrumbs} />
       </Box>
       <Container>
-        <Typography variant="h4" align={isMobile ? "center" : "left"}>
+        <Typography variant="h4" component="h1">
           Panel realizacji
         </Typography>
         <Box display="flex" justifyContent="flex-end" sx={{ mt: 4 }}>
@@ -41,17 +41,17 @@ export default function AdminRealizationsPage({ realizations }: Props): JSX.Elem
 
         {/* Title Bar */}
         <Grid container spacing={2} wrap="nowrap" sx={{ mt: 2 }}>
-          <Grid item xs={9} sm={5} lg={9}>
+          <Grid item xs={9} sm={5} lg={7}>
             <Typography variant="body1">Nazwa</Typography>
           </Grid>
           {isMobile ? null : (
-            <Grid item sm={3} lg={1}>
+            <Grid item sm={3} lg={2}>
               <Typography variant="body1">Data wykonania</Typography>
             </Grid>
           )}
-          <Grid item xs={3} sm={4} lg={2}>
+          <Grid item xs={3} sm={4} lg={3}>
             <Box display="flex">
-              <Typography variant="body1">Opcje</Typography>
+              <Typography variant="body1">Akcje</Typography>
             </Box>
           </Grid>
         </Grid>

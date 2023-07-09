@@ -85,23 +85,21 @@ const RealizationItemAdmin = ({ realization }: Props): JSX.Element => {
     <>
       <Stack direction="column" spacing={3}>
         <Grid container spacing={2} wrap="nowrap" direction="row" justifyContent="center">
-          <Grid item xs={9} sm={5} lg={9}>
+          <Grid item xs={6} sm={5} lg={7}>
             <Typography variant="body1">{realization.title}</Typography>
           </Grid>
 
           {isMobile ? null : (
-            <Grid item sm={3} lg={1}>
+            <Grid item sm={3} lg={2}>
               <Typography variant="body1">{realizationDate}</Typography>
             </Grid>
           )}
 
-          <Grid item xs={3} sm={4} lg={2}>
+          <Grid item xs={6} sm={4} lg={3}>
             <Stack direction="row" spacing={3}>
-              {isMobile ? null : (
-                <Button variant="outlined" size="small" color="error" onClick={handleOpen}>
-                  Usuń
-                </Button>
-              )}
+              <Button variant="outlined" size="small" color="error" onClick={handleOpen}>
+                Usuń
+              </Button>
 
               <Button
                 variant="contained"
@@ -125,13 +123,21 @@ const RealizationItemAdmin = ({ realization }: Props): JSX.Element => {
         <Divider orientation="horizontal" flexItem />
       </Stack>
 
-      <Dialog open={openDialog} onClose={handleClose}>
+      <Dialog
+        open={openDialog}
+        onClose={handleClose}
+        sx={{
+          ".MuiPaper-root": {
+            padding: 1,
+          },
+        }}
+      >
         <DialogTitle>Potwierdź operację</DialogTitle>
         <DialogContent>
           <DialogContentText>Na pewno chcesz usunąć ten projekt?</DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary" variant="outlined">
+          <Button onClick={handleClose} variant="outlined">
             Anuluj
           </Button>
           <Button onClick={deleteItem} variant="contained" autoFocus>
