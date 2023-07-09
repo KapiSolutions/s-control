@@ -56,7 +56,7 @@ export const schema = yup.object().shape({
   title: yup.string().required(reqMsg).max(maxLength, limitMsg),
   author: yup.string().required(reqMsg).max(maxLength, limitMsg),
   atrType: yup.string().max(maxLength, limitMsg),
-  atrLocalization: yup.string().max(maxLength, limitMsg),
+  atrLocalization: yup.string().required(reqMsg).max(maxLength, limitMsg),
   atrPower: yup.string().max(maxLength, limitMsg),
   atrPanels: yup.string().max(maxLength, limitMsg),
   atrInverter: yup.string().max(maxLength, limitMsg),
