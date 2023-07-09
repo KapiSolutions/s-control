@@ -230,21 +230,21 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
           justifyContent="center"
           spacing={isMobile ? 0 : 2}
         >
-          {getInput("title", "Nazwa")}
+          {getInput("title", "Nazwa*")}
           {getInput("author", "Autor")}
           {getInput("atrType", "Typ realizacji")}
-          {getInput("atrLocalization", "Lokalizacja")}
+          {getInput("atrLocalization", "Lokalizacja*")}
           {getInput("atrPower", "Moc")}
           {getInput("atrPanels", "Model paneli fotowoltaicznych")}
           {getInput("atrInverter", "Model falownika")}
           {getInput("atrPump", "Model pompy ciepła")}
           {getInput("atrBattery", "Model magazynu en.")}
-          {getInput("realizationDate", "Data wykonania", false, "typeDate")}
-          {getInput("publishedDate", "Data publikacji", false, "typeDate")}
+          {getInput("realizationDate", "Data wykonania*", false, "typeDate")}
+          {getInput("publishedDate", "Data publikacji*", false, "typeDate")}
           {getInput("tags", "Tagi", true)}
-          {getInput("mainImage", "Główny obraz", true)}
+          {getInput("mainImage", "Główny obraz*", true)}
           {getInput("images", "Pozostałe obrazy", true, "typeArea", 1)}
-          {getInput("description", "Opis", true, "typeArea")}
+          {getInput("description", "Opis*", true, "typeArea")}
         </Stack>
 
         {/* Private data */}
