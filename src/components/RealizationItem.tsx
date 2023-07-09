@@ -33,6 +33,14 @@ const styles = {
     WebkitLineClamp: 2,
     WebkitBoxOrient: "vertical",
   },
+  header: {
+    marginTop: 2,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    display: "-webkit-box",
+    WebkitLineClamp: 1,
+    WebkitBoxOrient: "vertical",
+  },
 };
 
 const RealizationItem = ({ realization }: Props): JSX.Element => {
@@ -84,7 +92,7 @@ const RealizationItem = ({ realization }: Props): JSX.Element => {
             sizes="(max-width: 600px) 90vw, (max-width: 900px) 50vw, 33vw"
           />
         </Box>
-        <Typography variant="h6" sx={{ mt: 2 }}>
+        <Typography variant="h6" sx={styles.header}>
           {realization.title}
         </Typography>
 
