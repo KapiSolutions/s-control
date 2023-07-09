@@ -9,6 +9,7 @@ import { connectDB, client } from "@/utils/mongodb";
 import Photovoltaics from "@/components/sections/Photovoltaics";
 import HeatPumps from "@/components/sections/HeatPumps";
 import AboutUs from "@/components/sections/AboutUs";
+import CallToUs from "@/components/sections/CallToUs";
 
 type Props = {
   realizations: Realizations;
@@ -29,6 +30,7 @@ export default function HomePage({ realizations }: Props): JSX.Element {
         <Realizations realizations={realizations} />
         <AboutUs />
         <Contact />
+        <CallToUs />
       </Stack>
     </>
   );
