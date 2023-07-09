@@ -3,6 +3,7 @@ import { Box, Stack, Typography, Container, useTheme, useMediaQuery } from "@mui
 import ContentHeader from "../ContentHeader";
 import Image from "next/image";
 import logos from "../../../public/img/sections/dotationSection/logos.webp";
+import Link from "next/link";
 
 const Dotation = (): JSX.Element => {
   const theme = useTheme();
@@ -46,7 +47,10 @@ const Dotation = (): JSX.Element => {
   const dotationItem = (price: string, detail: string) => {
     return (
       <Typography variant="h6">
-        <b>{price} zł</b> <Typography variant="body1" component="span">na {detail}</Typography> 
+        <b>{price} zł</b>{" "}
+        <Typography variant="body1" component="span">
+          na {detail}
+        </Typography>
       </Typography>
     );
   };
@@ -86,11 +90,11 @@ const Dotation = (): JSX.Element => {
           <Typography variant="h5" sx={{ fontWeight: "bold" }}>
             Masz pytania? Zadzwoń do nas!
           </Typography>
-          <Typography variant="h6" sx={{ fontWeight: "bold", mt:1 }}>
-            730 530 556
+          <Typography variant="h6" sx={{ fontWeight: "bold", mt: 1 }}>
+            <Link href="tel:730530556">730 530 556</Link>
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            608 687 664
+            <Link href="tel:608687664">608 687 664</Link>
           </Typography>
         </Container>
         <Box sx={{ position: "relative", width: "100%", height: "60px", backgroundColor: "common.white" }}>
