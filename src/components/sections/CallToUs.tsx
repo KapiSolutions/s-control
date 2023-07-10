@@ -10,12 +10,18 @@ const CallToUs = (): JSX.Element => {
   });
 
   return (
-    <Box sx={{ width: "100vw", backgroundColor: "#fbfbfb", pt:8, pb:8 }}>
+    <Box sx={{ width: "100vw", bgcolor: "layout.semiLight", pt: 8, pb: 8 }}>
       <Stack spacing={4} alignItems="center">
         <Typography variant="h4" component="h1" sx={{ fontWeight: "bold" }}>
           Zadzwoń do nas
         </Typography>
-        <Typography variant="body1" textAlign="center" component="p" sx={{ textTransform: "uppercase", opacity: 0.6 }}>
+        <Typography
+          variant="body1"
+          textAlign="center"
+          component="p"
+          color="text.secondary"
+          sx={{ textTransform: "uppercase" }}
+        >
           Doradzimy i wycenimy najlapsze rozwiązanie dla Ciebie i Twojego domu!
         </Typography>
         <Box sx={{ width: "50%" }}>
