@@ -41,7 +41,6 @@ const Navbar = (): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-  const navBackground = "rgba(255, 255, 255, 0.8)";
   const scrollOffset = 70;
 
   // Mobile menu handlers
@@ -90,7 +89,7 @@ const Navbar = (): JSX.Element => {
 
   return (
     <Paper
-      elevation={3}
+      elevation={1}
       sx={{
         zIndex: 1000,
         position: "fixed",
@@ -100,7 +99,7 @@ const Navbar = (): JSX.Element => {
         pl: 3,
         pr: 3,
         borderRadius: 0,
-        backgroundColor: navBackground,
+        bgcolor: "layout.navbar",
         backdropFilter: "blur(16px) saturate(180%)",
       }}
       component="nav"
@@ -143,7 +142,7 @@ const Navbar = (): JSX.Element => {
               disableScrollLock={true}
               sx={{
                 transform: "translateY(12px)",
-                "& .MuiMenu-paper": { backgroundColor: navBackground, backdropFilter: "blur(24px)" },
+                "& .MuiMenu-paper": { bgcolor: "layout.navbar", backdropFilter: "blur(24px)" },
               }}
             >
               {pages.map((page, idx) => (
