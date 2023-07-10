@@ -116,7 +116,7 @@ const WhyUs = (): JSX.Element => {
         </Stack>
         <Stack alignItems="center" justifyContent="center" mt={6} spacing={1}>
           <Box sx={{ position: "relative", width: "50%", height: "2px", backgroundColor: "primary.main", mb: 3 }}></Box>
-          <Typography name="satisfyBar" variant="h4">
+          <Typography name="satisfyBar" variant="h4" component="p">
             {progress}%
           </Typography>
           <Typography variant="h5">Zadowolonych klientów</Typography>
