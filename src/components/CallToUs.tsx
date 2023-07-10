@@ -10,7 +10,7 @@ const CallToUs = (): JSX.Element => {
   });
 
   return (
-    <Box sx={{ width: "100vw", bgcolor: "layout.semiLight", pt: 8, pb: 8 }}>
+    <Box sx={{ width: "100vw", bgcolor: "layout.dark", pt: 8, pb: 8 }}>
       <Stack spacing={4} alignItems="center">
         <Typography variant="h4" component="h1" sx={{ fontWeight: "bold" }}>
           Zadzwoń do nas
@@ -19,17 +19,25 @@ const CallToUs = (): JSX.Element => {
           variant="body1"
           textAlign="center"
           component="p"
-          color="text.secondary"
+          color="text.darkSecondary"
           sx={{ textTransform: "uppercase" }}
         >
           Doradzimy i wycenimy najlapsze rozwiązanie dla Ciebie i Twojego domu!
         </Typography>
         <Box sx={{ width: "50%" }}>
-          <Divider>
-            <CallIcon color="primary" sx={{ fontSize: 62 }} />
+          <Divider
+            sx={{
+              "&::before, &::after": {
+                borderColor: "layout.dividerDark",
+              },
+            }}
+          >
+            <Link href="tel:730530556">
+              <CallIcon color="primary" sx={{ fontSize: 62 }} className="zoom"/>
+            </Link>
           </Divider>
         </Box>
-        <Typography variant="h4" component="p" sx={{ fontWeight: "bold" }}>
+        <Typography variant="h4" component="p" sx={{ fontWeight: "bold" }} className="zoom">
           <Link href="tel:730530556">+48 730 530 556</Link>
         </Typography>
       </Stack>
