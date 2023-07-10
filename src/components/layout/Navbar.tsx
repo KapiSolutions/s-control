@@ -4,7 +4,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
-import FilePresentIcon from "@mui/icons-material/FilePresent";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import {
@@ -20,8 +19,7 @@ import {
   useMediaQuery,
   Paper,
 } from "@mui/material";
-import logo from "../../../public/img/darkLogo.png";
-import Image from "next/image";
+import Logotype from "../Logotype";
 
 const pages = ["O Nas", "Fotowoltaika", "Pompy Ciepła", "Realizacje", "Kontakt"];
 const sections = [
@@ -107,12 +105,8 @@ const Navbar = (): JSX.Element => {
       {/* Mobile View */}
       {isMobile ? (
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: "100%", pt: 1, pb: 1 }}>
-          <Box
-            className="pointer"
-            onClick={brandButtonAction}
-            sx={{ position: "relative", width: "110px", height: "22px" }}
-          >
-            <Image src={logo} alt="S-control logo fotowoltaika" fill style={{ objectFit: "contain" }} />
+          <Box className="pointer" onClick={brandButtonAction}>
+            <Logotype size={36} />
           </Box>
           <Box>
             <IconButton
@@ -193,12 +187,8 @@ const Navbar = (): JSX.Element => {
           spacing={2}
           sx={{ width: "100%", pt: 1, pb: 1 }}
         >
-          <Box
-            className="pointer"
-            onClick={brandButtonAction}
-            sx={{ position: "relative", width: "110px", height: "30px" }}
-          >
-            <Image src={logo} alt="S-control logo fotowoltaika" fill style={{ objectFit: "contain" }} />
+          <Box className="pointer zoom" onClick={brandButtonAction}>
+            <Logotype size={40} />
           </Box>
           <Stack direction="row">
             {pages.map((page, idx) => (
@@ -209,6 +199,7 @@ const Navbar = (): JSX.Element => {
                   scrollToSection(sections[idx]);
                 }}
                 sx={{ color: "text.primary", display: "block" }}
+                className="zoom"
               >
                 {page}
               </Button>
