@@ -15,7 +15,8 @@ const themeSetup = {
     layout: {
       dark: "#172536",
       semiLight: "#f8f9f9",
-      navbar: "rgba(255, 255, 255, 0.8)"
+      navbar: "rgba(255, 255, 255, 0.8)",
+      dividerDark: "#a2a7ae99"
     },
   },
   typography: {
