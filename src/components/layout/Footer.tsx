@@ -38,8 +38,9 @@ const Footer = (): JSX.Element => {
         {/* Working hours and contact details */}
         <Stack
           direction={isMobile ? "column" : "row"}
-          justifyContent="space-between"
           alignItems={isMobile ? "center" : "end"}
+          justifyContent="space-between"
+          px={1}
         >
           <Stack spacing={2} alignItems={isMobile ? "center" : "left"} sx={{ mt: isMobile ? 4 : 2 }}>
             <Typography
