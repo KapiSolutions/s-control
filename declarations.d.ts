@@ -17,6 +17,7 @@ declare module "@mui/material/styles" {
       semiLight: string;
       light: string;
       navbar: string;
+      dividerDark: string;
     };
   }
 }
