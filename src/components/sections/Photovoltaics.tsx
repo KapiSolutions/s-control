@@ -9,8 +9,8 @@ const Photovoltaics = (): JSX.Element => {
   });
 
   return (
-    <Box>
-      <Container sx={{ minHeight: "100vh" }} name="PhotovoltaicsSection">
+    <Box component="section">
+      <Container sx={{ minHeight: "100vh" }} name="PhotovoltaicsSection" >
         <ContentHeader primary="Instalacje Fotowoltaiczne" secondary="Zielona energia dla Twojego domu" />
       </Container>
     </Box>

@@ -25,7 +25,7 @@ const Contact = (): JSX.Element => {
   const gMapsUrl =
     "https://www.google.com/maps/dir//%C5%BBarnowiec+119,+38-460+%C5%BBarnowiec/@49.7051489,21.1001723,9z/data=!4m8!4m7!1m0!1m5!1m1!1s0x473c495f118269cb:0xcd02dadc7a7f2822!2m2!1d21.6630658!2d49.693944?entry=ttu";
   return (
-    <Box sx={{ maxWidth: "100vw" }}>
+    <Box sx={{ maxWidth: "100vw" }} component="section">
       <Container name="ContactSection">
         <ContentHeader primary="Szybki kontakt" secondary="Skorzystaj z naszego formularza" />
         <Stack alignItems="center" justifyContent="center" direction={isMobile ? "column" : "row"}>

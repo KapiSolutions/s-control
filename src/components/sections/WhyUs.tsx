@@ -75,10 +75,16 @@ const WhyUs = (): JSX.Element => {
     },
   ];
   return (
-    <Box sx={{ maxWidth: "100vw", mt: 2 }}>
+    <Box sx={{ maxWidth: "100vw", mt: 2 }} component="section">
       <Container>
         <ContentHeader primary="Co nas wyróżnia" secondary="Nasze 4 filary" />
-        <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap", pt: 4 }} justifyContent="center" useFlexGap>
+        <Stack
+          direction="row"
+          spacing={isMobile ? 4 : 2}
+          sx={{ flexWrap: "wrap", pt: 4 }}
+          justifyContent="center"
+          useFlexGap
+        >
           {filars.map((filar, idx) => (
             <Stack
               key={idx}
@@ -100,7 +106,7 @@ const WhyUs = (): JSX.Element => {
               >
                 {filar.icon}
               </Box>
-              <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+              <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mb: 1 }}>
                 {filar.header}
               </Typography>
               {/* <Typography variant="body1">{filar.content}</Typography> */}

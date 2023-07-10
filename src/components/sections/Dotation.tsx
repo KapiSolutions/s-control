@@ -46,7 +46,7 @@ const Dotation = (): JSX.Element => {
   };
   const dotationItem = (price: string, detail: string) => {
     return (
-      <Typography variant="h6">
+      <Typography variant="h6" component="p">
         <b>{price} zł</b>{" "}
         <Typography variant="body1" component="span">
           na {detail}
@@ -62,6 +62,7 @@ const Dotation = (): JSX.Element => {
         minHeight: "110vh",
         backgroundImage: "url('/img/sections/dotationSection/house.webp')",
       }}
+      component="section"
     >
       <Container sx={{ mt: 8 }}>
         <Box>
@@ -70,7 +71,7 @@ const Dotation = (): JSX.Element => {
       </Container>
 
       <Stack sx={styles.rectBox} spacing={1}>
-        <Typography variant="h5" sx={{ fontWeight: "bold", mb: 1 }}>
+        <Typography variant="h5" component="p" sx={{ fontWeight: "bold", mb: 1 }}>
           Uzyskaj nawet:
         </Typography>
         {dotationItem("19 400", "Pompy ciepła")}
@@ -87,14 +88,18 @@ const Dotation = (): JSX.Element => {
 
       <Box sx={{ position: "absolute", bottom: 0, width: "100%", opacity: 0.95 }}>
         <Container sx={styles.rectOrangeBox}>
-          <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+          <Typography variant="h5" component="p" sx={{ fontWeight: "bold" }}>
             Masz pytania? Zadzwoń do nas!
           </Typography>
-          <Typography variant="h6" sx={{ fontWeight: "bold", mt: 1 }}>
-            <Link href="tel:730530556" aria-label="S-control Telephone">730 530 556</Link>
+          <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mt: 1 }}>
+            <Link href="tel:730530556" aria-label="S-control Telephone">
+              730 530 556
+            </Link>
           </Typography>
-          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            <Link href="tel:608687664" aria-label="S-control Telephone">608 687 664</Link>
+          <Typography variant="h6" component="p" sx={{ fontWeight: "bold" }}>
+            <Link href="tel:608687664" aria-label="S-control Telephone">
+              608 687 664
+            </Link>
           </Typography>
         </Container>
         <Box sx={{ position: "relative", width: "100%", height: "60px", backgroundColor: "common.white" }}>
