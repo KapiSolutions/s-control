@@ -71,13 +71,13 @@ const CallToUs = (): JSX.Element => {
               },
             }}
           >
-            <Link href="tel:730530556">
+            <Link href="tel:730530556" aria-label="S-control Telephone">
               <CallIcon color="primary" sx={{ fontSize: 62 }} className="zoom" />
             </Link>
           </Divider>
         </Box>
         <Typography variant="h4" component="p" sx={{ fontWeight: "bold" }} className="zoom">
-          <Link href="tel:730530556">+48 730 530 556</Link>
+          <Link href="tel:730530556" aria-label="S-control Telephone">+48 730 530 556</Link>
         </Typography>
       </Stack>
     </Box>

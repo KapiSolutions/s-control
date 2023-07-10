@@ -91,10 +91,10 @@ const Dotation = (): JSX.Element => {
             Masz pytania? Zadzwoń do nas!
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: "bold", mt: 1 }}>
-            <Link href="tel:730530556">730 530 556</Link>
+            <Link href="tel:730530556" aria-label="S-control Telephone">730 530 556</Link>
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            <Link href="tel:608687664">608 687 664</Link>
+            <Link href="tel:608687664" aria-label="S-control Telephone">608 687 664</Link>
           </Typography>
         </Container>
         <Box sx={{ position: "relative", width: "100%", height: "60px", backgroundColor: "common.white" }}>
