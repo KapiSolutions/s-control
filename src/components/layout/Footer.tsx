@@ -5,6 +5,10 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import CallToUs from "../CallToUs";
 import Logotype from "../Logotype";
+import DirectionsIcon from "@mui/icons-material/Directions";
+import EmailIcon from "@mui/icons-material/Email";
+import CallIcon from "@mui/icons-material/Call";
+import PhonePausedIcon from "@mui/icons-material/PhonePaused";
 
 const Footer = (): JSX.Element => {
   const theme = useTheme();
@@ -37,24 +41,34 @@ const Footer = (): JSX.Element => {
           justifyContent="space-between"
           alignItems={isMobile ? "center" : "end"}
         >
-          <Stack spacing={1} alignItems={isMobile ? "center" : "left"} sx={{ mt: isMobile ? 4 : 2 }}>
+          <Stack spacing={2} alignItems={isMobile ? "center" : "left"} sx={{ mt: isMobile ? 4 : 2 }}>
             <Typography
               variant="body2"
               color="text.dark"
               className="pointer"
               onClick={() => window.open(gMapsUrl, "_blank", "noopener,noreferrer")}
+              sx={{ display: "flex", alignItems: "center", gap: 1 }}
             >
-              Żarnowiec 119, 38-460 Jedlicze
+              {!isMobile && <DirectionsIcon color="primary" />} Żarnowiec 119, 38-460 Jedlicze
             </Typography>
-            <Typography variant="body2" color="text.dark">
-              <Link href="mailto:biuro@s-control.net">biuro@s-control.net</Link>
+            <Typography variant="body2" color="text.dark" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              {!isMobile && <EmailIcon color="primary" />}{" "}
+              <Link href="mailto:biuro@s-control.net" aria-label="S-control E-mail">
+                biuro@s-control.net
+              </Link>
             </Typography>
-            <Typography variant="body2" color="text.dark">
-              <Link href="tel:730530556">+48 730 530 556</Link>
+            <Typography variant="body2" color="text.dark" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              {!isMobile && <CallIcon color="primary" />}{" "}
+              <Link href="tel:730530556" aria-label="S-control Telephone">
+                +48 730 530 556
+              </Link>
             </Typography>
 
-            <Typography variant="body2" color="text.dark">
-              <Link href="tel:608687664">+48 608 687 664</Link>
+            <Typography variant="body2" color="text.dark" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              {!isMobile && <PhonePausedIcon color="primary" />}{" "}
+              <Link href="tel:608687664" aria-label="S-control Telephone">
+                +48 608 687 664
+              </Link>
             </Typography>
           </Stack>
 
@@ -92,15 +106,21 @@ const Footer = (): JSX.Element => {
         <Divider orientation="horizontal" flexItem sx={{ mb: 2, bgcolor: "layout.dividerDark" }} />
         <Stack direction={isMobile ? "column-reverse" : "row"} justifyContent="space-between" alignItems="center">
           <Typography variant="caption" display="block" align="left" mt={isMobile ? 2 : 0}>
-            ©{new Date().getFullYear()} S-control. Wszelkie prawa zastrzeżone.
+            ©{new Date().getFullYear()}{" "}
+            <Link href="/" className="Hover" aria-label="S-control Web site">
+              S-control.
+            </Link>{" "}
+            Wszelkie prawa zastrzeżone.
             {!isMobile && (
               <>
-               {" "}Projekt strony:{" "}
+                {" "}
+                Projekt strony:{" "}
                 <Link
                   href="https://kapisolutions.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="Hover"
+                  aria-label="Kapisolutions Web site"
                 >
                   Kapisolutions.
                 </Link>
@@ -122,6 +142,7 @@ const Footer = (): JSX.Element => {
               passHref
               style={{ display: "flex", alignItems: "center", gap: 2 }}
               className="Hover"
+              aria-label="S-control Facebook profile"
             >
               <FacebookIcon fontSize="small" /> <Typography variant="caption">Facebook</Typography>
             </Link>
@@ -129,6 +150,7 @@ const Footer = (): JSX.Element => {
               href="mailto:biuro@s-control.net"
               className="Hover"
               style={{ display: "flex", alignItems: "center", gap: 2 }}
+              aria-label="S-control E-mail"
             >
               <AlternateEmailIcon fontSize="small" /> <Typography variant="caption">E-mail</Typography>
             </Link>
