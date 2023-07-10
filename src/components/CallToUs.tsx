@@ -39,7 +39,7 @@ const CallToUs = (): JSX.Element => {
       window.history.pushState(null, "", `/`);
       window.scrollTo(0, 0);
     } else {
-      router.push("/");
+      window.scrollTo(0, 0);
     }
   };
   return (
