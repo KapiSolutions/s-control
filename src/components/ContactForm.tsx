@@ -52,7 +52,6 @@ const ContactForm = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<Contact> = async (data) => {
     setLoading(true);
-    showSnackBar("success", "Wiadomość wysłana, dziękujemy!");
     // Show reCaptcha widget
     if (!showReCaptcha) {
       setShowReCaptcha(true);
