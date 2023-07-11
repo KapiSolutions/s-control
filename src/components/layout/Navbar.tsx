@@ -21,12 +21,12 @@ import {
 } from "@mui/material";
 import Logotype from "../Logotype";
 
-const pages = ["O Nas", "Fotowoltaika", "Pompy Ciepła", "Realizacje", "Kontakt"];
+const pages = ["Fotowoltaika", "Pompy Ciepła", "Realizacje", "O Nas", "Kontakt"];
 const sections = [
-  "AboutUsSection",
   "PhotovoltaicsSection",
   "HeatPumpsSection",
   "RealizationsSection",
+  "AboutUsSection",
   "ContactSection",
 ];
 
