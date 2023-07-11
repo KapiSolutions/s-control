@@ -1,15 +1,24 @@
-import React from "react";
-import { Box, Stack, Typography, Container, useTheme, useMediaQuery } from "@mui/material";
+import React, { useRef } from "react";
+import { Box, Stack, Typography, Container, useTheme, useMediaQuery, Slide } from "@mui/material";
 import ContentHeader from "../ContentHeader";
 import Image from "next/image";
 import logos from "../../../public/img/sections/dotationSection/logos.webp";
+import svg from "../../../public/svg/mojprad-logo.svg";
 import Link from "next/link";
+import useIsVisible from "@/utils/hooks/useIsVisible";
+import Collapse from "@mui/material/Collapse";
 
 const Dotation = (): JSX.Element => {
+  const containerRef = useRef(null);
+  const itemRef = useRef(null);
+  const item2Ref = useRef(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
+  const itemVisible = useIsVisible(itemRef);
+  const item2Visible = useIsVisible(item2Ref);
+
   const styles = {
     circleBox: {
       width: "230px",
@@ -63,45 +72,59 @@ const Dotation = (): JSX.Element => {
         backgroundImage: "url('/img/sections/dotationSection/house.webp')",
       }}
       component="section"
+      ref={containerRef}
     >
       <Container sx={{ mt: 8 }}>
         <Box>
           <ContentHeader primary="Dotacje Mój Prąd 5.0" secondary="Formalnośći załatwimy za Ciebie!" />
         </Box>
       </Container>
-
-      <Stack sx={styles.rectBox} spacing={1}>
-        <Typography variant="h5" component="p" sx={{ fontWeight: "bold", mb: 1 }}>
-          Uzyskaj nawet:
-        </Typography>
-        {dotationItem("19 400", "Pompy ciepła")}
-        {dotationItem("7 000", "Instalacje Fotowoltaiczne")}
-        {dotationItem("5 000", "Magazyny ciepła")}
-        {dotationItem("3 000", "Systemy HEMS")}
-      </Stack>
-
+      <Box ref={itemRef}>
+        <Slide direction="left" in={itemVisible} container={containerRef.current} timeout={500}>
+          <Stack sx={styles.rectBox} spacing={1}>
+            <Typography variant="h5" component="p" sx={{ fontWeight: "bold", mb: 1 }}>
+              Uzyskaj nawet:
+            </Typography>
+            {dotationItem("19 400", "Pompy ciepła")}
+            {dotationItem("7 000", "Instalacje Fotowoltaiczne")}
+            {dotationItem("5 000", "Magazyny ciepła")}
+            {dotationItem("3 000", "Systemy HEMS")}
+          </Stack>
+        </Slide>
+      </Box>
       {/* <Box sx={styles.circleBox}>
         <Typography variant="h5" sx={{ textTransform: "uppercase", fontWeight: "bold", textAlign: "center" }}>
           Formalnośći załatwimy za Ciebie!
         </Typography>
       </Box> */}
 
-      <Box sx={{ position: "absolute", bottom: 0, width: "100%", opacity: 0.95 }}>
-        <Container sx={styles.rectOrangeBox}>
-          <Typography variant="h5" component="p" sx={{ fontWeight: "bold" }}>
-            Masz pytania? Zadzwoń do nas!
-          </Typography>
-          <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mt: 1 }}>
-            <Link href="tel:730530556" aria-label="S-control Telephone">
-              730 530 556
-            </Link>
-          </Typography>
-          <Typography variant="h6" component="p" sx={{ fontWeight: "bold" }}>
-            <Link href="tel:608687664" aria-label="S-control Telephone">
-              608 687 664
-            </Link>
-          </Typography>
-        </Container>
+      <Box sx={{ position: "absolute", bottom: 0, width: "100%", opacity: 1 }} ref={item2Ref}>
+        <Collapse in={item2Visible} timeout={500}>
+          <Container sx={styles.rectOrangeBox}>
+            <Stack direction="row" justifyContent="space-between" alignItems="center">
+              <Box>
+                <Typography variant="h5" component="p" sx={{ fontWeight: "bold" }}>
+                  Masz pytania? Zadzwoń do nas!
+                </Typography>
+                <Typography variant="h6" component="p" sx={{ fontWeight: "bold", mt: 1 }}>
+                  <Link href="tel:730530556" aria-label="S-control Telephone">
+                    730 530 556
+                  </Link>
+                </Typography>
+                <Typography variant="h6" component="p" sx={{ fontWeight: "bold" }}>
+                  <Link href="tel:608687664" aria-label="S-control Telephone">
+                    608 687 664
+                  </Link>
+                </Typography>
+              </Box>
+              {!isMobile && (
+                <Box sx={{ position: "relative", height: "80px", width: "300px", opacity: 1 }}>
+                  <Image src={svg} fill alt="s-control mój prąd dotacje logo" style={{ objectFit: "contain" }} />
+                </Box>
+              )}
+            </Stack>
+          </Container>
+        </Collapse>
         <Box sx={{ position: "relative", width: "100%", height: "60px", backgroundColor: "common.white" }}>
           <Image src={logos} alt="Fundusze unijne" fill style={{ objectFit: "contain" }} />
         </Box>
