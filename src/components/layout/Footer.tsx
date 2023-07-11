@@ -82,19 +82,19 @@ const Footer = (): JSX.Element => {
             )}
 
             <Stack spacing={1} divider={<Divider flexItem sx={{ bgcolor: "layout.dividerDark" }} />}>
-              <Stack direction="row" justifyContent="space-between" spacing={4}>
-                <Typography variant="body1" color="text.darkSecondary">
+              <Stack direction="row" justifyContent="space-between" spacing={4} sx={{color:"text.darkSecondary"}}>
+                <Typography variant="body2" >
                   Poniedziałek - Sobota
                 </Typography>
-                <Typography variant="body1" color="text.darkSecondary">
+                <Typography variant="body2">
                   8:00 - 16:00
                 </Typography>
               </Stack>
-              <Stack direction="row" justifyContent="space-between">
-                <Typography variant="body1" color="text.darkSecondary">
+              <Stack direction="row" justifyContent="space-between" sx={{color:"text.darkSecondary"}}>
+                <Typography variant="body2" >
                   Niedziela
                 </Typography>
-                <Typography variant="body1" color="primary.main">
+                <Typography variant="body2" color="primary.main">
                   Zamknięte
                 </Typography>
               </Stack>
@@ -115,7 +115,7 @@ const Footer = (): JSX.Element => {
             {!isMobile && (
               <>
                 {" "}
-                Projekt strony:{" "}
+                WebDesign:{" "}
                 <Link
                   href="https://kapisolutions.vercel.app"
                   target="_blank"
@@ -147,19 +147,19 @@ const Footer = (): JSX.Element => {
             >
               <FacebookIcon fontSize="small" /> <Typography variant="caption">Facebook</Typography>
             </Link>
-            <Link
+            {/* <Link
               href="mailto:biuro@s-control.net"
               className="Hover"
               style={{ display: "flex", alignItems: "center", gap: 2 }}
               aria-label="S-control E-mail"
             >
               <AlternateEmailIcon fontSize="small" /> <Typography variant="caption">E-mail</Typography>
-            </Link>
+            </Link> */}
           </Stack>
         </Stack>
         {isMobile && (
           <Typography variant="caption" display="block" align="center" mt={1}>
-            Projekt strony:{" "}
+            WebDesign:{" "}
             <Link href="https://kapisolutions.vercel.app" target="_blank" rel="noopener noreferrer" className="Hover">
               Kapisolutions.
             </Link>
