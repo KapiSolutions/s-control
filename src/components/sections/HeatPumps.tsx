@@ -9,7 +9,7 @@ const HeatPumps = (): JSX.Element => {
   });
 
   return (
-    <Box component="section">
+    <Box component="section" sx={{ bgcolor: "layout.dark", color: "common.white", pt: 6, pb: 6 }}>
       <Container sx={{ minHeight: "100vh" }} name="HeatPumpsSection">
         <ContentHeader primary="Pompy Ciepła" secondary="Ciepło i oszczędności" />
       </Container>

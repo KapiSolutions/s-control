@@ -9,7 +9,7 @@ const AboutUs = (): JSX.Element => {
   });
 
   return (
-    <Box component="section">
+    <Box component="section" sx={{ bgcolor: "layout.semiLight", pt: 6, pb: 6 }}>
       <Container sx={{ minHeight: "100vh" }} name="AboutUsSection">
         <ContentHeader primary="O nas" secondary="Poznaj S-control" />
       </Container>
