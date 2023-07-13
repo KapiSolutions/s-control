@@ -14,7 +14,7 @@ const Photovoltaics = (): JSX.Element => {
   });
   const itemVisible = useIsVisible(itemRef);
   return (
-    <Box component="section">
+    <Box component="section" sx={{pt: 6, pb: 6}}>
       <Container sx={{ minHeight: "100vh" }} name="PhotovoltaicsSection">
         <ContentHeader primary="Instalacje Fotowoltaiczne" secondary="Zielona energia dla Twojego domu" />
         <Stack
