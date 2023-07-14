@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Divider, Stack, Typography, useTheme, useMediaQuery } from "@mui/material";
 import CallIcon from "@mui/icons-material/Call";
-import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
+import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -42,11 +42,12 @@ const CallToUs = (): JSX.Element => {
       window.scrollTo(0, 0);
     }
   };
+
   return (
     <Box sx={{ position: "relative", width: "100vw", bgcolor: "layout.dark", pt: 10, pb: 10 }}>
       <Box sx={style.diamondShape}>
         <Box sx={style.diamondContent} className="pointer Hover" onClick={scrollButtonAction}>
-        <KeyboardDoubleArrowUpIcon sx={{fontSize: 32 }} />
+          <KeyboardDoubleArrowUpIcon sx={{ fontSize: 32 }} />
         </Box>
       </Box>
 
@@ -71,13 +72,17 @@ const CallToUs = (): JSX.Element => {
               },
             }}
           >
-            <Link href="tel:730530556" aria-label="S-control Telephone">
-              <CallIcon color="primary" sx={{ fontSize: 62 }} className="zoom" />
-            </Link>
+            <Box className="tilt-shaking">
+              <Link href="tel:730530556" aria-label="S-control Telephone">
+                <CallIcon color="primary" sx={{ fontSize: 62 }} className="zoom" />
+              </Link>
+            </Box>
           </Divider>
         </Box>
         <Typography variant="h4" component="p" sx={{ fontWeight: "bold" }} className="zoom">
-          <Link href="tel:730530556" aria-label="S-control Telephone">+48 730 530 556</Link>
+          <Link href="tel:730530556" aria-label="S-control Telephone">
+            +48 730 530 556
+          </Link>
         </Typography>
       </Stack>
     </Box>
