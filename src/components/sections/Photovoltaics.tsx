@@ -17,6 +17,22 @@ const Photovoltaics = (): JSX.Element => {
     defaultMatches: true,
   });
   const itemVisible = useIsVisible(itemRef);
+
+  const getItem = (icon: JSX.Element, header: string, content: string): JSX.Element => {
+    return (
+      <Box>
+        <Stack direction={isMobile ? "column" : "row"} spacing={2} mb={2} alignItems="center">
+          {icon}
+          <Typography variant="body1" sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
+            {header}
+          </Typography>
+        </Stack>
+        <Typography variant="body1" color="text.secondary">
+          {content}
+        </Typography>
+      </Box>
+    );
+  };
   return (
     <Box component="section" sx={{ pt: 6, pb: 6 }}>
       <Container sx={{ minHeight: "100vh" }} name="PhotovoltaicsSection">
@@ -65,54 +81,27 @@ const Photovoltaics = (): JSX.Element => {
               </Box>
             </Grid>
           </Zoom>
-          <Grid item xs={12} md={6} sx={{maxWidth: isMobile ? "98vw" : "auto"}}>
+          <Grid item xs={12} md={6} sx={{ maxWidth: isMobile ? "98vw" : "auto" }}>
             <Stack
               spacing={isMobile ? 4 : 2}
               alignItems={isMobile ? "center" : "left"}
               sx={{ textAlign: isMobile ? "center" : "left", pr: 1 }}
             >
-              <Box>
-                <Stack direction={isMobile ? "column" : "row"} spacing={2} mb={2} alignItems="center">
-                  <SolarPowerIcon color="primary" sx={{ fontSize: 36 }} />
-                  <Typography variant="body1" sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
-                    Nasza Wizja
-                  </Typography>
-                </Stack>
-                <Typography variant="body1" color="text.secondary">
-                  W S-Control zdajemy sobie sprawę, że energia słoneczna jest nie tylko przyszłością, ale także
-                  rozwiązaniem na teraźniejszość. Dlatego specjalizujemy się w dostarczaniu kompleksowych rozwiązań
-                  fotowoltaicznych, które pozwolą Ci cieszyć się czystą energią i oszczędnościami na rachunkach za prąd.
-                </Typography>
-              </Box>
-
-              <Box sx={isMobile ? { bgcolor: "layout.semiLight", p: 2 } : {}}>
-                <Stack direction={isMobile ? "column" : "row"} spacing={2} mb={2} alignItems="center">
-                  <EmojiNatureIcon color="primary" sx={{ fontSize: 36 }} />
-                  <Typography variant="body1" sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
-                    Środowisko
-                  </Typography>
-                </Stack>
-                <Typography variant="body1" color="text.secondary">
-                  Dbamy o czystość naszego środowiska i przyczyniamy się do walki ze zmianami klimatu. Wykorzystując
-                  energię słoneczną, nie emitujemy żadnych szkodliwych gazów cieplarnianych ani innych substancji
-                  szkodliwych dla atmosfery.
-                </Typography>
-              </Box>
-
-              <Box>
-                <Stack direction={isMobile ? "column" : "row"} spacing={2} mb={2} alignItems="center">
-                  <VerifiedIcon color="primary" sx={{ fontSize: 36 }} />
-                  <Typography variant="body1" sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
-                    Odpowiedzialność
-                  </Typography>
-                </Stack>
-                <Typography variant="body1" color="text.secondary">
-                  Jesteśmy dumni z jakości naszych produktów i usług. Stawiamy na sprawdzone technologie i wysokiej
-                  jakości panele fotowoltaiczne, które są gwarancją niezawodności i wydajności przez wiele lat. Nasze
-                  instalacje są również objęte gwarancją, aby zapewnić Ci spokój i pewność, że podejmujesz trafną
-                  decyzję.
-                </Typography>
-              </Box>
+              {getItem(
+                <SolarPowerIcon color="primary" sx={{ fontSize: 36 }} />,
+                "Nasza Wizja",
+                " W S-Control zdajemy sobie sprawę, że energia słoneczna jest nie tylko przyszłością, ale także rozwiązaniem na teraźniejszość. Dlatego specjalizujemy się w dostarczaniu kompleksowych rozwiązań fotowoltaicznych, które pozwolą Ci cieszyć się czystą energią i oszczędnościami na rachunkach za prąd."
+              )}
+              {getItem(
+                <EmojiNatureIcon color="primary" sx={{ fontSize: 36 }} />,
+                "Środowisko",
+                "Dbamy o czystość naszego środowiska i przyczyniamy się do walki ze zmianami klimatu. Wykorzystując energię słoneczną, nie emitujemy żadnych szkodliwych gazów cieplarnianych ani innych substancji szkodliwych dla atmosfery."
+              )}
+              {getItem(
+                <VerifiedIcon color="primary" sx={{ fontSize: 36 }} />,
+                "Odpowiedzialność",
+                "Jesteśmy dumni z jakości naszych produktów i usług. Stawiamy na sprawdzone technologie i wysokiej jakości panele fotowoltaiczne, które są gwarancją niezawodności i wydajności przez wiele lat. Nasze instalacje są również objęte gwarancją, aby zapewnić Ci spokój i pewność, że podejmujesz trafną decyzję."
+              )}
             </Stack>
           </Grid>
         </Grid>
