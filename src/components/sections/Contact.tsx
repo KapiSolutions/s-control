@@ -43,7 +43,7 @@ const Contact = (): JSX.Element => {
               <Box sx={{ width: isMobile ? "100%" : "50%", ml: isMobile ? 0 : 5, mt: isMobile ? 4 : 0 }}>
                 <MapWrapper
                   provider={osm}
-                  height={280}
+                  height={isMobile? 200 : 280}
                   defaultCenter={[49.85, 21.4]}
                   metaWheelZoom={true}
                   zoom={zoom}
