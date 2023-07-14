@@ -26,3 +26,22 @@
 .noScrollBar::-webkit-scrollbar {
   display: none;  /* for IE, Edge and Firefox */
 }
+
+.tilt-shaking {
+  animation: tilt-shaking 1.5s infinite;
+  transform-origin: center;
+  display: inline-block;
+}
+
+.tilt-shaking:hover {
+  animation-play-state: paused;
+}
+
+@keyframes tilt-shaking {
+  0% { transform: rotate(0deg); }
+  5% { transform: rotate(5deg); }
+  10% { transform: rotate(0deg); }
+  15% { transform: rotate(-5deg); }
+  20% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
