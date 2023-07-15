@@ -3,6 +3,7 @@ import { Box, Container, Stack, Typography, useTheme, useMediaQuery, Fade } from
 import useIsVisible from "@/utils/hooks/useIsVisible";
 import ContentHeader from "../ContentHeader";
 import mainImg from "../../../public/img/sections/heatpumps/main.webp";
+import main2Img from "../../../public/img/sections/heatpumps/main2.webp";
 import Image from "next/image";
 import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -27,23 +28,21 @@ const HeatPumps = (): JSX.Element => {
         <Typography variant="body1" sx={{ fontWeight: "bold", textTransform: "uppercase" }}>
           {header}
         </Typography>
-        {isMobile && <Typography variant="body2">{content}</Typography>}
+        <Typography variant="body2">{content}</Typography>
       </Stack>
     );
   };
 
   return (
-    <Box component="section" sx={{ minHeight: "100vh", bgcolor: "layout.dark", color: "common.white", pt: 6, pb: 6 }}>
+    <Box
+      component="section"
+      sx={{ minHeight: "100vh", maxWidth: "100vw", bgcolor: "layout.dark", color: "common.white", pt: 6, pb: 6 }}
+    >
       <Container name="HeatPumpsSection">
         <ContentHeader primary="Pompy Ciepła" secondary="Komfort termiczny przez cały rok!" />
       </Container>
       <Box sx={{ position: "relative", height: 350, width: "100vw" }}>
-        <Image
-          src={mainImg}
-          fill
-          alt="s-control pompy ciepła"
-          style={{ objectFit: "cover", objectPosition: isMobile ? "-150px bottom" : "center" }}
-        />
+        <Image src={isMobile ? main2Img : mainImg} fill alt="s-control pompy ciepła" style={{ objectFit: "cover" }} />
       </Box>
       <Container sx={{ mt: 4 }}>
         <Fade in={itemVisible} timeout={1000}>
