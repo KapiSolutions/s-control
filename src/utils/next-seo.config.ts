@@ -15,10 +15,7 @@ const config: DefaultSeoProps = {
     url: "https://www.s-control.net",
     siteName: "S-Control | Instalacje Fotowoltaiczne",
     images: [
-      { url: "https://www.s-control.net/img/openGraph/main0.webp" },
-      { url: "https://www.s-control.net/img/openGraph/main1.webp" },
-      { url: "https://www.s-control.net/img/openGraph/main2.webp" },
-      { url: "https://www.s-control.net/img/openGraph/main3.webp" },
+      { url: "https://www.s-control.net/img/openGraph/main4.webp" },
     ],
     description:
       "Oferujemy Instalacje fotowoltaiczne, pompy ciepła, klimatyzacje oraz magazyny energii. Działamy głównie na terenie województw podkarpackiego i małopolskiego, obsługując miasta takie jak Krosno, Rzeszów, Kraków, Tarnów oraz inne miejscowości w regionie.",
