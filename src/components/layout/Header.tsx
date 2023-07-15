@@ -39,7 +39,7 @@ const Header = (): JSX.Element => {
       <Navbar />
       <Box sx={styles.overlay}>
         <Container>
-          <Stack spacing={isMobile ? 3 : 6} sx={{ textAlign: "left", ml: 2 }}>
+          <Stack spacing={6} sx={{ textAlign: "left", ml: 2 }}>
             <Box sx={{color: "common.white"}}>
               <Logotype size={isMobile ? 80 : 100} weight="bold" />
             </Box>
