@@ -45,7 +45,7 @@ const AboutUs = (): JSX.Element => {
             md={4}
             sx={{
               position: "relative",
-              height: isMobile ? 300 : 350,
+              height: isMobile ? 300 : 400,
               clipPath: "polygon(0 0,calc(100% - 40.00px) 0,100% 40.00px,100% 100%,0 100%)",
             }}
           >
@@ -54,10 +54,10 @@ const AboutUs = (): JSX.Element => {
           <Grid item xs={12} md={7} sx={{ pt: isMobile ? 4 : 0 }}>
             <Stack spacing={4} alignItems="center" sx={{ textAlign: isMobile ? "center" : "left" }}>
               <Stack spacing={2} alignItems="center">
-                <Typography variant="body1" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
+                <Typography variant="h6" component="p" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
                   Kim jesteśmy?
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ textAlign: "justify" }}>
                   Jesteśmy doświadczoną firmą działającą w branży Odnawialnych Źródeł Energii oraz Automatyki od 2017
                   roku. Nasza firma, S-Control, powstała w wyniku zebranych doświadczeń, pasji do nowoczesnych
                   technologii oraz dążenia do opracowywania innowacyjnych rozwiązań. Wszystko to, aby dostarczać jak
@@ -66,10 +66,10 @@ const AboutUs = (): JSX.Element => {
               </Stack>
               <Box sx={{ width: "50%", height: "2px", backgroundColor: "primary.main" }}></Box>
               <Stack spacing={2} alignItems="center">
-                <Typography variant="body1" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
+                <Typography variant="h6" component="p" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
                   Gdzie działamy?
                 </Typography>
-                <Typography variant="body2">
+                <Typography variant="body2" sx={{ textAlign: "justify" }}>
                   Swoje usługi oferujemy głównie na terenie województw podkarpackiego i małopolskiego, obsługując miasta
                   takie jak Krosno, Rzeszów, Kraków, Tarnów oraz inne miejscowości w regionie. Nasz zespół ekspertów
                   posiada wiedzę i doświadczenie, aby sprostać Twoim potrzebom i dostarczyć profesjonalne, szyte na
@@ -77,12 +77,11 @@ const AboutUs = (): JSX.Element => {
                 </Typography>
               </Stack>
               {isMobile && <Box sx={{ width: "50%", height: "2px", backgroundColor: "primary.main" }}></Box>}
-              
             </Stack>
           </Grid>
         </Grid>
-        
-        <Stack alignItems="center" mt={6} spacing={4}>
+
+        <Stack alignItems="center" mt={isMobile ? 6 : 8} mb={2} spacing={4}>
           <Stack alignItems="center">
             <Typography
               variant="body1"
@@ -90,7 +89,7 @@ const AboutUs = (): JSX.Element => {
             >
               Co oferujemy
             </Typography>
-            <Typography variant="h4" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
+            <Typography variant="h4" component="p" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
               Nasza oferta
             </Typography>
           </Stack>
