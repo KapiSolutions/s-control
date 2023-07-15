@@ -17,8 +17,8 @@ const Header = (): JSX.Element => {
       right: 0,
       bottom: 0,
       left: 0,
-      background: isMobile ? "none" : "linear-gradient(to right, rgba(255,255,255,0.7) 0%, rgba(0,0,0,0) 50%)",
-      // background: 'linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%)',
+      // background: isMobile ? "none" : "linear-gradient(to right, rgba(255,255,255,0.7) 0%, rgba(0,0,0,0) 50%)",
+      background: `linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) ${isMobile ? "80%" : "50%"})`,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -32,7 +32,7 @@ const Header = (): JSX.Element => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundImage: "url('/img/main-1.webp')",
+        backgroundImage: "url('/img/main-2.webp')",
         backgroundPosition: "right",
       }}
     >
@@ -40,7 +40,7 @@ const Header = (): JSX.Element => {
       <Box sx={styles.overlay}>
         <Container>
           <Stack spacing={isMobile ? 3 : 6} sx={{ textAlign: "left", ml: 2 }}>
-            <Box>
+            <Box sx={{color: "common.white"}}>
               <Logotype size={isMobile ? 80 : 100} weight="bold" />
             </Box>
 
