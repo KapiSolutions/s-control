@@ -52,30 +52,36 @@ const AboutUs = (): JSX.Element => {
             <Image src={main} fill alt="s-control fotowoltaika" style={{ objectFit: "cover" }} />
           </Grid>
           <Grid item xs={12} md={7} sx={{ pt: isMobile ? 4 : 0 }}>
-            <Stack spacing={2} alignItems="center" sx={{ textAlign: isMobile ? "center" : "left" }}>
-              <Typography variant="body1" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
-                Kim jesteśmy?
-              </Typography>
-              <Typography variant="body2">
-                Jesteśmy doświadczoną firmą działającą w branży Odnawialnych Źródeł Energii oraz Automatyki od 2017
-                roku. Nasza firma, S-Control, powstała w wyniku zebranych doświadczeń, pasji do nowoczesnych technologii
-                oraz dążenia do opracowywania innowacyjnych rozwiązań. Wszystko to, aby dostarczać jak najlepsze
-                rozwiązania dla Ciebie i Twojego domu.
-              </Typography>
-              <Box sx={{ position: "relative", width: "50%", height: "2px", backgroundColor: "primary.main" }}></Box>
-              <Typography variant="body1" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
-                Gdzie działamy?
-              </Typography>
-              <Typography variant="body2">
-                Swoje usługi oferujemy głównie na terenie województw podkarpackiego i małopolskiego, obsługując miasta
-                takie jak Krosno, Rzeszów, Kraków, Tarnów oraz inne miejscowości w regionie. Nasz zespół ekspertów
-                posiada wiedzę i doświadczenie, aby sprostać Twoim potrzebom i dostarczyć profesjonalne, szyte na miarę
-                rozwiązania.
-              </Typography>
+            <Stack spacing={4} alignItems="center" sx={{ textAlign: isMobile ? "center" : "left" }}>
+              <Stack spacing={2} alignItems="center">
+                <Typography variant="body1" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
+                  Kim jesteśmy?
+                </Typography>
+                <Typography variant="body2">
+                  Jesteśmy doświadczoną firmą działającą w branży Odnawialnych Źródeł Energii oraz Automatyki od 2017
+                  roku. Nasza firma, S-Control, powstała w wyniku zebranych doświadczeń, pasji do nowoczesnych
+                  technologii oraz dążenia do opracowywania innowacyjnych rozwiązań. Wszystko to, aby dostarczać jak
+                  najlepsze rozwiązania dla Ciebie i Twojego domu.
+                </Typography>
+              </Stack>
+              <Box sx={{ width: "50%", height: "2px", backgroundColor: "primary.main" }}></Box>
+              <Stack spacing={2} alignItems="center">
+                <Typography variant="body1" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
+                  Gdzie działamy?
+                </Typography>
+                <Typography variant="body2">
+                  Swoje usługi oferujemy głównie na terenie województw podkarpackiego i małopolskiego, obsługując miasta
+                  takie jak Krosno, Rzeszów, Kraków, Tarnów oraz inne miejscowości w regionie. Nasz zespół ekspertów
+                  posiada wiedzę i doświadczenie, aby sprostać Twoim potrzebom i dostarczyć profesjonalne, szyte na
+                  miarę rozwiązania.
+                </Typography>
+              </Stack>
+              {isMobile && <Box sx={{ width: "50%", height: "2px", backgroundColor: "primary.main" }}></Box>}
+              
             </Stack>
           </Grid>
         </Grid>
-
+        
         <Stack alignItems="center" mt={6} spacing={4}>
           <Stack alignItems="center">
             <Typography
@@ -89,7 +95,7 @@ const AboutUs = (): JSX.Element => {
             </Typography>
           </Stack>
 
-          <Stack direction={isMobile ? "column" : "row"} spacing={8}>
+          <Stack direction={isMobile ? "column" : "row"} spacing={isMobile ? 4 : 8}>
             {getItem(<SolarPowerIcon sx={styles.icon} />, "Fotowoltaika")}
             {getItem(<HeatPumpIcon sx={styles.icon} />, "Pompy ciepła")}
             {getItem(<BatteryCharging90Icon sx={styles.icon} />, "Magazyny energii")}
