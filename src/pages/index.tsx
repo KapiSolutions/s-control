@@ -9,6 +9,7 @@ import { connectDB, client } from "@/utils/mongodb";
 import Photovoltaics from "@/components/sections/Photovoltaics";
 import HeatPumps from "@/components/sections/HeatPumps";
 import AboutUs from "@/components/sections/AboutUs";
+import LocalBusinessSeo from "@/components/LocalBusinessSeo";
 
 type Props = {
   realizations: Realizations;
@@ -18,6 +19,8 @@ export default function HomePage({ realizations }: Props): JSX.Element {
   return (
     <>
       <NextSeo title="S-control | Instalacje Fotowoltaiczne" />
+      <LocalBusinessSeo />
+
       <Box sx={{ ml: 2 }}>
         <BreadCrumbs items={null} />
       </Box>
