@@ -127,13 +127,13 @@ const ContactForm = (): JSX.Element => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack direction={isMobile ? "column" : "row"} useFlexGap spacing={isMobile ? 0 : 2}>
         {getInput("clientName", "Imię")}
-        {getInput("email", "E-mail")}
+        {getInput("email", "E-mail (opcjonalne)")}
       </Stack>
       <Stack direction={isMobile ? "row" : "row"} useFlexGap spacing={isMobile ? 2 : 2}>
         {getInput("telephone", "Telefon")}
         {getInput("postalCode", "Kod pocztowy")}
       </Stack>
-      <Box sx={{ width: "100%" }}>{getInput("msg", "Wiadomość", true)}</Box>
+      <Box sx={{ width: "100%" }}>{getInput("msg", "Wiadomość  (opcjonalne)", true)}</Box>
       {showReCaptcha && (
         <Box sx={{ display: "flex", justifyContent: isMobile ? "center" : "right" }}>
           <ReCAPTCHA sitekey={reCaptchaClientKey} onChange={onReCAPTCHAChange} />
