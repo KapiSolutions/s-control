@@ -21,10 +21,10 @@ export default function HomePage({ realizations }: Props): JSX.Element {
       <NextSeo title="S-control | Instalacje Fotowoltaiczne" />
       <LocalBusinessSeo />
 
-      <Box sx={{ ml: 2 }}>
+      {/* <Box sx={{ ml: 2 }}>
         <BreadCrumbs items={null} />
-      </Box>
-      <Stack spacing={6}>
+      </Box> */}
+      <Stack spacing={6} pt={4}>
         <WhyUs />
         <Dotation />
         <Photovoltaics />
