@@ -10,6 +10,7 @@ const Header = (): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
+  const scrollOffset = 70;
   const styles = {
     overlay: {
       position: "absolute",
@@ -24,6 +25,16 @@ const Header = (): JSX.Element => {
       alignItems: "center",
     },
   };
+  const scrollToSection = (name: string) => {
+    if (router.pathname === "/") {
+      const element = document.getElementsByName(name)[0];
+      window.history.pushState(null, "", `/#${name}`); //add to history without loading the page
+      // window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+      window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "smooth" });
+    } else {
+      router.push(`/#${name}`, undefined, { scroll: false });
+    }
+  };
   return (
     <Box
       sx={{
@@ -34,13 +45,14 @@ const Header = (): JSX.Element => {
         alignItems: "center",
         backgroundImage: "url('/img/main-2.webp')",
         backgroundPosition: "right",
+        backgroundSize: "cover",
       }}
     >
       <Navbar />
       <Box sx={styles.overlay}>
         <Container>
           <Stack spacing={6} sx={{ textAlign: "left", ml: 2 }}>
-            <Box sx={{color: "common.white"}}>
+            <Box sx={{ color: "common.white" }}>
               <Logotype size={isMobile ? 80 : 100} weight="bold" />
             </Box>
 
@@ -61,10 +73,12 @@ const Header = (): JSX.Element => {
               Instalacje fotowoltaiczne i pompy ciepła
             </Typography>
 
-            <Stack direction="row" spacing={2} sx={{ mt: isMobile ? 2 : 0 }}>
-              {/* <Button variant="outlined" size="large" color="secondary">
-              Wycena
-            </Button> */}
+            <Stack
+              direction={isMobile ? "column" : "row-reverse"}
+              spacing={2}
+              justifyContent="left"
+              sx={{ mt: isMobile ? 2 : 0 }}
+            >
               <Button
                 variant="contained"
                 size="large"
@@ -79,6 +93,15 @@ const Header = (): JSX.Element => {
                 }}
               >
                 Dowiedz się więcej
+              </Button>
+              <Button
+                variant="outlined"
+                size="large"
+                color="primary"
+                sx={{ fontWeight: "bold", width: "120px", height: "50px", borderRadius: "10px" }}
+                onClick={() => scrollToSection("ContactSection")}
+              >
+                Kontakt
               </Button>
             </Stack>
           </Stack>
