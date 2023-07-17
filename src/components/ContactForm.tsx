@@ -42,8 +42,8 @@ const ContactForm = (): JSX.Element => {
       const key = errArray[0] as keyof Contact;
       const property = errors[key];
 
+      // Scroll and set focus on the first input with error message
       if (typeof property === "object" && "message" in property) {
-        // single field
         document.getElementsByName(errArray[0])[0].focus();
         document.getElementsByName(errArray[0])[0].scrollIntoView({ block: "center", inline: "nearest" });
       }
@@ -126,8 +126,12 @@ const ContactForm = (): JSX.Element => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack direction={isMobile ? "column" : "row"} useFlexGap spacing={isMobile ? 0 : 2}>
-        {getInput("clientName", "Imię i nazwisko")}
+        {getInput("clientName", "Imię")}
         {getInput("email", "E-mail")}
+      </Stack>
+      <Stack direction={isMobile ? "row" : "row"} useFlexGap spacing={isMobile ? 2 : 2}>
+        {getInput("telephone", "Telefon")}
+        {getInput("postalCode", "Kod pocztowy")}
       </Stack>
       <Box sx={{ width: "100%" }}>{getInput("msg", "Wiadomość", true)}</Box>
       {showReCaptcha && (
