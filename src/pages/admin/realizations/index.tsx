@@ -1,5 +1,17 @@
+import React, { useState } from "react";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
-import { Typography, Container, Stack, Grid, Divider, Box, Button, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Typography,
+  Container,
+  Stack,
+  Grid,
+  Divider,
+  Box,
+  Button,
+  useTheme,
+  useMediaQuery,
+  CircularProgress,
+} from "@mui/material";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import RealizationItemAdmin from "@/components/admin/realizations/RealizationItemAdmin";
 import type { Realizations } from "@/utils/schema/realization";
@@ -13,8 +25,9 @@ type Props = {
 };
 
 export default function AdminRealizationsPage({ realizations }: Props): JSX.Element {
+  const [redirecting, setRedirecting] = useState(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"), {
     defaultMatches: true,
   });
 
@@ -31,29 +44,45 @@ export default function AdminRealizationsPage({ realizations }: Props): JSX.Elem
           Panel realizacji
         </Typography>
         <Box display="flex" justifyContent="flex-end" sx={{ mt: 4 }}>
-          <Link href="/admin/realizations/new#main">
-            <Button variant="outlined" color="inherit" size="large" sx={{ width: isMobile ? "100%" : "auto" }}>
-              <PostAddIcon sx={{ mr: 1 }} />
-              Dodaj nową!
+          <Link
+            href="/admin/realizations/new#main"
+            passHref
+            style={{ width: isMobile ? "100%" : "auto" }}
+            onClick={() => setRedirecting(true)}
+          >
+            <Button variant="outlined" color="inherit" size="large" fullWidth >
+              {redirecting ? (
+                <CircularProgress color="inherit" size={20} />
+              ) : (
+                <>
+                  <PostAddIcon sx={{ mr: 1 }} />
+                  Dodaj nową!
+                </>
+              )}
             </Button>
           </Link>
         </Box>
 
         {/* Title Bar */}
-        <Grid container spacing={2} wrap="nowrap" sx={{ mt: 2 }}>
-          <Grid item xs={9} sm={5} lg={7}>
+        <Grid container wrap="nowrap" sx={{ mt: 2 }}>
+          <Grid item xs={10} sm={8} md={5}>
             <Typography variant="body1">Nazwa</Typography>
           </Grid>
           {isMobile ? null : (
-            <Grid item sm={3} lg={2}>
-              <Typography variant="body1">Data wykonania</Typography>
-            </Grid>
+            <>
+              <Grid item md={2}>
+                <Typography variant="body1">Data wykonania</Typography>
+              </Grid>
+              <Grid item md={2}>
+                <Typography variant="body1">Data wykonania</Typography>
+              </Grid>
+              <Grid item xs={6} sm={4} md={3}>
+                <Box display="flex">
+                  <Typography variant="body1">Akcje</Typography>
+                </Box>
+              </Grid>
+            </>
           )}
-          <Grid item xs={3} sm={4} lg={3}>
-            <Box display="flex">
-              <Typography variant="body1">Akcje</Typography>
-            </Box>
-          </Grid>
         </Grid>
 
         {/* Items */}
