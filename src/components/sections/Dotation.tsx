@@ -72,7 +72,7 @@ const Dotation = (): JSX.Element => {
       sx={{
         position: "relative",
         width: "100vw",
-        minHeight: isExtraLarge ? "100vh" : "110vh",
+        minHeight: isExtraLarge ? "100vh" : "115vh",
         backgroundImage: "url('/img/sections/dotation/house.webp')",
         backgroundSize: "cover",
       }}
