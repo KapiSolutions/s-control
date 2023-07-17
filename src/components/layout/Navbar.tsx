@@ -36,7 +36,7 @@ const Navbar = (): JSX.Element => {
   const [anchorElNavLg, setAnchorElNavLg] = useState<null | HTMLElement>(null);
   const { user, error, isLoading } = useUser();
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"), {
     defaultMatches: true,
   });
   const scrollOffset = 70;
