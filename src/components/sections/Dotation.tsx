@@ -19,7 +19,7 @@ const Dotation = (): JSX.Element => {
   const isExtraLarge = useMediaQuery(theme.breakpoints.up(1400), {
     defaultMatches: true,
   });
-  console.log(isExtraLarge);
+  
   const itemVisible = useIsVisible(itemRef);
   const item2Visible = useIsVisible(item2Ref);
 
