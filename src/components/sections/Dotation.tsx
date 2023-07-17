@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import { Box, Stack, Typography, Container, useTheme, useMediaQuery, Slide } from "@mui/material";
 import ContentHeader from "../ContentHeader";
 import Image from "next/image";
-import logos from "../../../public/img/sections/dotationSection/logos.webp";
-import svg from "../../../public/svg/mojprad-logo.svg";
+import euLogoDotation from "../../../public/img/sections/dotation/logos.webp";
+import mojPradSvg from "../../../public/svg/mojprad-logo.svg";
 import Link from "next/link";
 import useIsVisible from "@/utils/hooks/useIsVisible";
 import Collapse from "@mui/material/Collapse";
@@ -16,6 +16,10 @@ const Dotation = (): JSX.Element => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
+  const isExtraLarge = useMediaQuery(theme.breakpoints.up(1400), {
+    defaultMatches: true,
+  });
+  console.log(isExtraLarge);
   const itemVisible = useIsVisible(itemRef);
   const item2Visible = useIsVisible(item2Ref);
 
@@ -36,12 +40,12 @@ const Dotation = (): JSX.Element => {
       minWidth: "300px",
       height: "fit-content",
       p: 2,
-      mt: 7,
+      // mt: isMobile? 6: 6,
       mr: 0,
       ml: "auto",
       backgroundColor: "rgba(0, 21, 37, 0.65)",
       color: "#f1f1f1",
-      borderBottom: "8px solid white",
+      // borderBottom: "8px solid white",
       borderRadius: "2px",
     },
     rectOrangeBox: {
@@ -68,15 +72,16 @@ const Dotation = (): JSX.Element => {
       sx={{
         position: "relative",
         width: "100vw",
-        minHeight: "110vh",
-        backgroundImage: "url('/img/sections/dotationSection/house.webp')",
+        minHeight: isExtraLarge ? "100vh" : "110vh",
+        backgroundImage: "url('/img/sections/dotation/house.webp')",
+        backgroundSize: "cover",
       }}
       component="section"
       ref={containerRef}
     >
       <Container sx={{ mt: 8 }}>
         <Box>
-          <ContentHeader primary="Dotacje Mój Prąd 5.0" secondary="Formalnośći załatwimy za Ciebie!" />
+          <ContentHeader primary="Dotacje Mój Prąd 5.0" secondary="Nie czekaj, skorzystaj już dziś!" />
         </Box>
       </Container>
       <Box ref={itemRef}>
@@ -89,6 +94,13 @@ const Dotation = (): JSX.Element => {
             {dotationItem("7 000", "Instalacje Fotowoltaiczne")}
             {dotationItem("5 000", "Magazyny ciepła")}
             {dotationItem("3 000", "Systemy HEMS")}
+            <Box pt={2}>
+              <Box sx={{ width: "50%", height: "2px", backgroundColor: "primary.main", mb: 2 }}></Box>
+              <Typography variant="h5" component="p" sx={{ textTransform: "uppercase", fontWeight: "bold", mb: 1 }}>
+                Formalności załatwimy za Ciebie! &#128221;
+                {/*&#9889; - thunder, 9996 - victoria, 127774 - sun, 128221-doc */}
+              </Typography>
+            </Box>
           </Stack>
         </Slide>
       </Box>
@@ -119,14 +131,14 @@ const Dotation = (): JSX.Element => {
               </Box>
               {!isMobile && (
                 <Box sx={{ position: "relative", height: "80px", width: "300px", opacity: 1 }}>
-                  <Image src={svg} fill alt="s-control mój prąd dotacje logo" style={{ objectFit: "contain" }} />
+                  <Image src={mojPradSvg} fill alt="s-control mój prąd dotacje logo" style={{ objectFit: "contain" }} />
                 </Box>
               )}
             </Stack>
           </Container>
         </Collapse>
         <Box sx={{ position: "relative", width: "100%", height: "60px", backgroundColor: "common.white" }}>
-          <Image src={logos} alt="Fundusze unijne" fill style={{ objectFit: "contain" }} />
+          <Image src={euLogoDotation} alt="Fundusze unijne" fill style={{ objectFit: "contain" }} />
         </Box>
       </Box>
     </Box>
