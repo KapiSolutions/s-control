@@ -117,6 +117,7 @@ const ContactForm = (): JSX.Element => {
             fullWidth
             multiline={multiline}
             rows={3}
+            inputProps={name === "telephone" ? { inputMode: "numeric", pattern: "[0-9]*" } : undefined}
           />
         )}
       />
@@ -127,13 +128,16 @@ const ContactForm = (): JSX.Element => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Stack direction={isMobile ? "column" : "row"} useFlexGap spacing={isMobile ? 0 : 2}>
         {getInput("clientName", "Imię")}
-        {getInput("email", "E-mail (opcjonalne)")}
+        {!isMobile && getInput("telephone", "Telefon")}
       </Stack>
-      <Stack direction={isMobile ? "row" : "row"} useFlexGap spacing={isMobile ? 2 : 2}>
-        {getInput("telephone", "Telefon")}
+      <Stack direction="row" useFlexGap spacing={2}>
         {getInput("postalCode", "Kod pocztowy")}
+        {isMobile ? getInput("telephone", "Telefon") : getInput("email", "E-mail (opcjonalne)")}
       </Stack>
-      <Box sx={{ width: "100%" }}>{getInput("msg", "Wiadomość  (opcjonalne)", true)}</Box>
+      <Stack useFlexGap>
+        {isMobile && getInput("email", "E-mail (opcjonalne)")}
+        {getInput("msg", "Wiadomość  (opcjonalne)", true)}
+      </Stack>
       {showReCaptcha && (
         <Box sx={{ display: "flex", justifyContent: isMobile ? "center" : "right" }}>
           <ReCAPTCHA sitekey={reCaptchaClientKey} onChange={onReCAPTCHAChange} />
