@@ -27,23 +27,39 @@ const RealizationOverview = ({ realization }: Props): JSX.Element => {
   });
   // Grid items on the top of the project overview
   const topSegment = (icon: JSX.Element, title: string, content: string | JSX.Element): JSX.Element => {
+    if (isMobile) {
+      return (
+        <Stack direction="row" useFlexGap flexWrap="wrap" spacing={1} alignItems="top">
+          {icon}
+          <Stack direction="row" spacing={1} alignItems="center" useFlexGap flexWrap="wrap" sx={{ maxWidth: "85%" }}>
+            <Typography variant="body2" sx={{ textTransform: "uppercase", fontWeight: "bold" }}>
+              {title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {content}
+            </Typography>
+          </Stack>
+          <Box sx={{ width: "100%", height: "1px", backgroundColor: "text.disabled", mt: 2, opacity: 0.3 }}></Box>
+        </Stack>
+      );
+    }
+
     return (
       <Grid container alignItems="top">
-        <Grid item xs={2} sm={3}>
+        <Grid item xs={4} sm={4}>
           <Typography
             variant="body2"
             sx={{
               textTransform: "uppercase",
               fontWeight: "bold",
-              opacity: 0.65,
               display: "flex",
               alignItems: "center",
             }}
           >
-            {icon} {isMobile ? null : <span style={{ marginLeft: 8 }}>{title}</span>}
+            {icon} <span style={{ marginLeft: 8 }}>{title}</span>
           </Typography>
         </Grid>
-        <Grid item xs={10} sm={7}>
+        <Grid item xs={8} sm={8}>
           <Typography variant="body2">{content}</Typography>
         </Grid>
       </Grid>
@@ -53,12 +69,38 @@ const RealizationOverview = ({ realization }: Props): JSX.Element => {
     <Box>
       <ContentHeader primary={realization.title} secondary={realization.atrLocalization} />
       <Stack spacing={2} sx={{ mt: 2 }}>
-        {realization.atrType && topSegment(<AppsIcon />, "Rodzaj instalacji", realization.atrType)}
-        {realization.atrPower && topSegment(<PowerIcon />, "Moc instalacji", realization.atrPower)}
-        {realization.atrPanels && topSegment(<SolarPowerIcon />, "Panele fotowoltaiczne", realization.atrPanels)}
-        {realization.atrInverter && topSegment(<BoltIcon />, "Falownik", realization.atrInverter)}
-        {realization.atrPump && topSegment(<LocalFireDepartmentIcon />, "Pompa ciepła", realization.atrPump)}
-        {realization.atrBattery && topSegment(<BatteryChargingFullIcon />, "Magazyn energii", realization.atrBattery)}
+        {realization.atrType &&
+          topSegment(
+            <AppsIcon sx={{ color: "primary.main" }} />,
+            isMobile ? "Typ" : "Rodzaj instalacji",
+            realization.atrType
+          )}
+        {realization.atrPower &&
+          topSegment(
+            <PowerIcon sx={{ color: "primary.main" }} />,
+            isMobile ? "Moc" : "Moc instalacji",
+            realization.atrPower
+          )}
+        {realization.atrPanels &&
+          topSegment(
+            <SolarPowerIcon sx={{ color: "primary.main" }} />,
+            isMobile ? "Panele" : "Panele fotowoltaiczne",
+            realization.atrPanels
+          )}
+        {realization.atrInverter &&
+          topSegment(<BoltIcon sx={{ color: "primary.main" }} />, "Falownik", realization.atrInverter)}
+        {realization.atrPump &&
+          topSegment(
+            <LocalFireDepartmentIcon sx={{ color: "primary.main" }} />,
+            isMobile ? "Pompa" : "Pompa ciepła",
+            realization.atrPump
+          )}
+        {realization.atrBattery &&
+          topSegment(
+            <BatteryChargingFullIcon sx={{ color: "primary.main" }} />,
+            isMobile ? "Magazyn" : "Magazyn energii",
+            realization.atrBattery
+          )}
       </Stack>
       <Box sx={{ position: "relative", width: "100%", height: "300px", mt: 3 }}>
         <Image src={realization.mainImage} fill alt={realization.title} style={{ objectFit: "cover" }} />
@@ -75,10 +117,10 @@ const RealizationOverview = ({ realization }: Props): JSX.Element => {
       {/* Images */}
       {realization.images != "" && (
         <Box sx={{ mt: 2 }}>
-          <Typography variant="body1" sx={{ mt: 2, ml: 1 }}>
+          {/* <Typography variant="body1" sx={{ mt: 2, ml: 1 }}>
             Zdjęcia:
-          </Typography>
-          <Stack direction="row" flexWrap="wrap" useFlexGap spacing={2} sx={{ mt: 2, ml: 1 }}>
+          </Typography> */}
+          <Stack direction="row" flexWrap="wrap" useFlexGap spacing={2} sx={{ mt: 2 }}>
             {realization.images?.split("\n").map((url, idx) => (
               <Box
                 key={idx}
