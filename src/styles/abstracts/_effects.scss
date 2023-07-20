@@ -37,6 +37,19 @@
   animation-play-state: paused;
 }
 
+.animatedBorder {
+  animation: pulse 2.5s infinite cubic-bezier(0.25, 0.5, 0.9, 2.5);
+}
+
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 0 0 rgba(240, 158, 10, 0.9);
+  }
+  to {
+    box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
+  }
+}
+
 @keyframes tilt-shaking {
   0% { transform: rotate(0deg); }
   5% { transform: rotate(5deg); }

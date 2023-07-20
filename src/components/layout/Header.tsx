@@ -46,21 +46,13 @@ const Header = (): JSX.Element => {
     }
   };
   const dynamicText = (): JSX.Element => {
+    const delay = 2000;
     return (
       <TypeAnimation
         preRenderFirstString={true}
-        sequence={[
-          1500,
-          "pompy ciepła",
-          1500, // Waits 1s
-          "magazyny energii",
-          1500, // Waits 2s
-          "systemy hems",
-          1500, // Waits 2s
-          "klimatyzacje",
-        ]}
+        sequence={["pompy ciepła", delay, "magazyny energii", delay, "systemy hems", delay, "klimatyzacje", delay]}
         wrapper="span"
-        cursor={true}
+        cursor={false}
         repeat={Infinity}
         style={{ display: "inline-block" }}
       />
@@ -106,6 +98,22 @@ const Header = (): JSX.Element => {
                 variant="contained"
                 size="large"
                 color="primary"
+                className="animatedBorder"
+                sx={{
+                  fontWeight: "bold",
+                  width: "260px",
+                  height: "50px",
+                  borderRadius: "10px",
+                  border: "1px solid #001525",
+                }}
+                onClick={() => scrollToSection("ContactSection")}
+              >
+                Zamów bezpłatny audyt
+              </Button>
+              <Button
+                variant="outlined"
+                size="large"
+                color="primary"
                 sx={{ fontWeight: "bold", width: "220px", height: "50px", borderRadius: "10px" }}
                 onClick={() => {
                   if (router.route === "/") {
@@ -116,15 +124,6 @@ const Header = (): JSX.Element => {
                 }}
               >
                 Dowiedz się więcej
-              </Button>
-              <Button
-                variant="outlined"
-                size="large"
-                color="primary"
-                sx={{ fontWeight: "bold", width: "120px", height: "50px", borderRadius: "10px" }}
-                onClick={() => scrollToSection("ContactSection")}
-              >
-                Kontakt
               </Button>
             </Stack>
           </Stack>
