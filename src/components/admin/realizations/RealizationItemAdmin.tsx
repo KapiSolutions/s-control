@@ -94,7 +94,13 @@ const RealizationItemAdmin = ({ realization }: Props): JSX.Element => {
       <Stack direction="column" spacing={3}>
         <Grid container wrap="nowrap" direction="row" alignItems="center" justifyContent="space-between">
           <Grid item xs={10} sm={8} md={5} alignItems="center">
-            <Stack direction="row" alignItems="center" spacing={1} onClick={() => setShowDetails(!showDetails)} className="pointer">
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={1}
+              onClick={() => setShowDetails(!showDetails)}
+              className="pointer"
+            >
               <Box sx={{ position: "relative", height: "50px", width: "50px" }}>
                 <Image
                   src={realization.mainImage}
@@ -130,6 +136,7 @@ const RealizationItemAdmin = ({ realization }: Props): JSX.Element => {
                   <Button
                     variant="contained"
                     size="small"
+                    sx={{ border: "1px solid #001525" }}
                     onClick={() => {
                       if (!redirecting) {
                         router.push({
@@ -170,46 +177,55 @@ const RealizationItemAdmin = ({ realization }: Props): JSX.Element => {
               Dane Klienta
             </Typography>
             <Stack direction={isMobile ? "column" : "row"} mt={1} spacing={isMobile ? 1 : 2} flexWrap="wrap" useFlexGap>
-              <Typography variant="body2">Imię i nazwisko: {realization.prvClientName}</Typography>
-              <Typography variant="body2">Adres: {realization.prvClientAddress}</Typography>
-              <Typography variant="body2">E-mail: {realization.prvClientEmail}</Typography>
-              <Typography variant="body2">Telefon: {realization.prvClientTelephone}</Typography>
-              <Typography variant="body2" sx={{width: "100%"}}>Uwagi: {realization.prvComments}</Typography>
+              <Typography variant="body2">
+                <b>Imię i nazwisko:</b> {realization.prvClientName}
+              </Typography>
+              <Typography variant="body2">
+                <b>Adres:</b> {realization.prvClientAddress}
+              </Typography>
+              <Typography variant="body2">
+                <b>E-mail:</b> {realization.prvClientEmail}
+              </Typography>
+              <Typography variant="body2">
+                <b>Telefon:</b> {realization.prvClientTelephone}
+              </Typography>
+              <Typography variant="body2" sx={{ width: "100%" }}>
+                <b>Uwagi:</b> {realization.prvComments}
+              </Typography>
             </Stack>
             {isMobile && (
               <Stack direction="row" mt={4} justifyContent="space-between" alignItems="center">
-              <Button variant="outlined" size="small" color="error" onClick={handleOpen} startIcon={<DeleteIcon />}>
-                Usuń
-              </Button>
-              <Button
-                variant="contained"
-                // size="small"
-                onClick={() => {
-                  if (!redirecting) {
-                    router.push({
-                      pathname: "/admin/realizations/[pid]",
-                      query: { pid: realization._id },
-                      hash: "main",
-                    });
-                  }
-                  setRedirecting(true);
-                }}
-                startIcon={<EditIcon />}
-              >
-                {redirecting ? <CircularProgress color="inherit" size={18} /> : "Edytuj"}
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                color="secondary"
-                startIcon={<KeyboardArrowUpIcon />}
-                onClick={() => setShowDetails(!showDetails)}
-              >
-                Zwiń
-              </Button>
-            </Stack>
+                <Button variant="outlined" size="small" color="error" onClick={handleOpen} startIcon={<DeleteIcon />}>
+                  Usuń
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{ border: "1px solid #001525" }}
+                  onClick={() => {
+                    if (!redirecting) {
+                      router.push({
+                        pathname: "/admin/realizations/[pid]",
+                        query: { pid: realization._id },
+                        hash: "main",
+                      });
+                    }
+                    setRedirecting(true);
+                  }}
+                  startIcon={redirecting ? null : <EditIcon />}
+                >
+                  {redirecting ? <CircularProgress color="inherit" size={22} /> : "Edytuj"}
+                </Button>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  color="secondary"
+                  startIcon={<KeyboardArrowUpIcon />}
+                  onClick={() => setShowDetails(!showDetails)}
+                >
+                  Zwiń
+                </Button>
+              </Stack>
             )}
-            
           </Box>
         ) : (
           <></>
