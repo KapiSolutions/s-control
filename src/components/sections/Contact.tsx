@@ -32,7 +32,7 @@ const Contact = (): JSX.Element => {
   return (
     <Box sx={{ maxWidth: "100vw" }} component="section" ref={containerRef.current}>
       <Container name="ContactSection">
-        <ContentHeader primary="Szybki kontakt" secondary="Skorzystaj z naszego formularza" />
+        <ContentHeader primary="Szybki kontakt" secondary="Umów się na bezpłatny audyt" />
         <Box ref={itemRef}>
           <Slide direction="right" container={containerRef.current} in={itemVisible} timeout={500}>
             <Stack alignItems="center" justifyContent="center" direction={isMobile ? "column" : "row"}>
