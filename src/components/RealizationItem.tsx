@@ -92,7 +92,7 @@ const RealizationItem = ({ realization }: Props): JSX.Element => {
             sizes="(max-width: 600px) 90vw, (max-width: 900px) 50vw, 33vw"
           />
         </Box>
-        <Typography variant="h6" sx={styles.header}>
+        <Typography variant="h6" component="h2" sx={styles.header}>
           {realization.title}
         </Typography>
 

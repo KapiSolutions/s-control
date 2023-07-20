@@ -123,7 +123,7 @@ const WhyUs = (): JSX.Element => {
           <Typography ref={satisfyBarRef} variant="h4" component="p">
             {progress}%
           </Typography>
-          <Typography variant="h5">Zadowolonych klientów</Typography>
+          <Typography variant="h5" component="p">Zadowolonych klientów</Typography>
         </Stack>
       </Container>
     </Box>
