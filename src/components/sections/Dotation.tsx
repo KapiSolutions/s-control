@@ -24,23 +24,11 @@ const Dotation = (): JSX.Element => {
   const item2Visible = useIsVisible(item2Ref);
 
   const styles = {
-    circleBox: {
-      width: "230px",
-      height: "230px",
-      // backgroundColor: "text.primary",
-      backgroundColor: "primary.main",
-      display: "flex",
-      alignItems: "center",
-      borderRadius: "50%",
-      margin: "auto",
-      mt: 4,
-    },
     rectBox: {
       width: isMobile ? "95%" : "70%",
       minWidth: "300px",
       height: "fit-content",
       p: 2,
-      // mt: isMobile? 6: 6,
       mr: 0,
       ml: "auto",
       backgroundColor: "rgba(0, 21, 37, 0.65)",
@@ -90,25 +78,20 @@ const Dotation = (): JSX.Element => {
             <Typography variant="h5" component="p" sx={{ fontWeight: "bold", mb: 1 }}>
               Uzyskaj nawet:
             </Typography>
-            {dotationItem("19 400", "Pompy ciepła")}
-            {dotationItem("7 000", "Instalacje Fotowoltaiczne")}
-            {dotationItem("5 000", "Magazyny ciepła")}
-            {dotationItem("3 000", "Systemy HEMS")}
+            {dotationItem("19 400", "Pompe ciepła")}
+            {dotationItem("16 000", "Magazyn energii")}
+            {dotationItem("7 000", "Instalacje fotowoltaiczną")}
+            {dotationItem("5 000", "Magazyn ciepła")}
+            {dotationItem("3 000", "System HEMS")}
             <Box pt={2}>
               <Box sx={{ width: "50%", height: "2px", backgroundColor: "primary.main", mb: 2 }}></Box>
               <Typography variant="h5" component="p" sx={{ textTransform: "uppercase", fontWeight: "bold", mb: 1 }}>
                 Formalności załatwimy za Ciebie! &#128221;
-                {/*&#9889; - thunder, 9996 - victoria, 127774 - sun, 128221-doc */}
               </Typography>
             </Box>
           </Stack>
         </Slide>
       </Box>
-      {/* <Box sx={styles.circleBox}>
-        <Typography variant="h5" sx={{ textTransform: "uppercase", fontWeight: "bold", textAlign: "center" }}>
-          Formalnośći załatwimy za Ciebie!
-        </Typography>
-      </Box> */}
 
       <Box sx={{ position: "absolute", bottom: 0, width: "100%", opacity: 1 }} ref={item2Ref}>
         <Collapse in={item2Visible} timeout={500}>
