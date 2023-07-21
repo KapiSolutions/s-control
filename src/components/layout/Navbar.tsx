@@ -25,11 +25,11 @@ import Logotype from "../Logotype";
 
 const pages = ["Fotowoltaika", "Pompy Ciepła", "Realizacje", "O Nas", "Kontakt"];
 const sections = [
-  "PhotovoltaicsSection",
-  "HeatPumpsSection",
-  "RealizationsSection",
-  "AboutUsSection",
-  "ContactSection",
+  "Fotowoltaika",
+  "Pompy-ciepła",
+  "Realizacje",
+  "O-nas",
+  "Kontakt",
 ];
 
 const Navbar = (): JSX.Element => {
