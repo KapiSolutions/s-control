@@ -26,12 +26,12 @@ const Contact = (): JSX.Element => {
     defaultMatches: true,
   });
   const itemVisible = useIsVisible(itemRef);
-
   const gMapsUrl =
     "https://www.google.com/maps/dir//%C5%BBarnowiec+119,+38-460+%C5%BBarnowiec/@49.7051489,21.1001723,9z/data=!4m8!4m7!1m0!1m5!1m1!1s0x473c495f118269cb:0xcd02dadc7a7f2822!2m2!1d21.6630658!2d49.693944?entry=ttu";
+
   return (
     <Box sx={{ maxWidth: "100vw" }} component="section" ref={containerRef.current}>
-      <Container name="ContactSection">
+      <Container name="Kontakt">
         <ContentHeader primary="Szybki kontakt" secondary="Umów się na bezpłatny audyt" />
         <Box ref={itemRef}>
           <Slide direction="right" container={containerRef.current} in={itemVisible} timeout={500}>
@@ -43,7 +43,7 @@ const Contact = (): JSX.Element => {
               <Box sx={{ width: isMobile ? "100%" : "50%", ml: isMobile ? 0 : 5, mt: isMobile ? 4 : 0 }}>
                 <MapWrapper
                   provider={osm}
-                  height={isMobile? 200 : 280}
+                  height={isMobile ? 200 : 280}
                   defaultCenter={[49.85, 21.4]}
                   metaWheelZoom={true}
                   zoom={zoom}

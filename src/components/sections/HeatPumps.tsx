@@ -38,7 +38,7 @@ const HeatPumps = (): JSX.Element => {
       component="section"
       sx={{ minHeight: "100vh", maxWidth: "100vw", bgcolor: "layout.dark", color: "common.white", pt: 6, pb: 6 }}
     >
-      <Container name="HeatPumpsSection">
+      <Container name="Pompy-ciepla">
         <ContentHeader primary="Pompy Ciepła" secondary="Komfort termiczny przez cały rok!" />
       </Container>
       <Box sx={{ position: "relative", height: 350, width: "100vw" }}>

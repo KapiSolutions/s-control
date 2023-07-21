@@ -106,7 +106,7 @@ const Header = (): JSX.Element => {
                   borderRadius: "10px",
                   border: "1px solid #001525",
                 }}
-                onClick={() => scrollToSection("ContactSection")}
+                onClick={() => scrollToSection("Kontakt")}
               >
                 Zamów bezpłatny audyt
               </Button>

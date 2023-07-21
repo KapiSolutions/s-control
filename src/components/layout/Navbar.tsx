@@ -26,7 +26,7 @@ import Logotype from "../Logotype";
 const pages = ["Fotowoltaika", "Pompy Ciepła", "Realizacje", "O Nas", "Kontakt"];
 const sections = [
   "Fotowoltaika",
-  "Pompy-ciepła",
+  "Pompy-ciepla",
   "Realizacje",
   "O-nas",
   "Kontakt",
