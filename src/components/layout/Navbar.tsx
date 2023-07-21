@@ -24,13 +24,7 @@ import {
 import Logotype from "../Logotype";
 
 const pages = ["Fotowoltaika", "Pompy Ciepła", "Realizacje", "O Nas", "Kontakt"];
-const sections = [
-  "Fotowoltaika",
-  "Pompy-ciepla",
-  "Realizacje",
-  "O-nas",
-  "Kontakt",
-];
+const sections = ["Fotowoltaika", "Pompy-ciepla", "Realizacje", "O-nas", "Kontakt"];
 
 const Navbar = (): JSX.Element => {
   const router = useRouter();
@@ -64,7 +58,7 @@ const Navbar = (): JSX.Element => {
     if (window.location.hash && router.pathname == "/") {
       const name = window.location.hash.replace("#", "");
       const element = document.getElementsByName(name)[0];
-      window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "smooth" });
+      element && window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "smooth" });
     }
     setLoading(false);
   }, [router.pathname]);
@@ -72,9 +66,11 @@ const Navbar = (): JSX.Element => {
   const scrollToSection = (name: string) => {
     if (router.pathname === "/") {
       const element = document.getElementsByName(name)[0];
-      window.history.pushState(null, "", `/#${name}`); //add to history without loading the page
-      // window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
-      window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "smooth" });
+      if (element) {
+        window.history.pushState(null, "", `/#${name}`); //add to history without loading the page
+        // window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+        window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "smooth" });
+      }
     } else {
       router.push(`/#${name}`, undefined, { scroll: false });
     }
