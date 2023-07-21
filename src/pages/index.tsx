@@ -1,6 +1,5 @@
 import { NextSeo } from "next-seo";
-import { Box, Stack } from "@mui/material";
-import BreadCrumbs from "@/components/BreadCrumbs";
+import { Stack } from "@mui/material";
 import WhyUs from "@/components/sections/WhyUs";
 import Dotation from "@/components/sections/Dotation";
 import Contact from "@/components/sections/Contact";
@@ -18,12 +17,8 @@ type Props = {
 export default function HomePage({ realizations }: Props): JSX.Element {
   return (
     <>
-      <NextSeo title="S-control | Instalacje Fotowoltaiczne" />
+      <NextSeo title="S-control | Instalacje Fotowoltaiczne" canonical="https://www.s-control.net" />
       <LocalBusinessSeo />
-
-      {/* <Box sx={{ ml: 2 }}>
-        <BreadCrumbs items={null} />
-      </Box> */}
       <Stack spacing={6} pt={4}>
         <WhyUs />
         <Dotation />
