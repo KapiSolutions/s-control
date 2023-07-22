@@ -47,8 +47,8 @@ const DesktopView = ({ realizations }: Props): JSX.Element => {
 
   return (
     <Carousel
-      autoPlay={false}
-      cycleNavigation={false}
+      autoPlay={true}
+      cycleNavigation={true}
       animation="slide"
       sx={{ width: "100%", height: 360, pt: 3 }}
       IndicatorIcon={<HorizontalRuleIcon />}
