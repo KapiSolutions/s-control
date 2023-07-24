@@ -73,7 +73,7 @@ const Header = (): JSX.Element => {
               }}
             >
               <Typography color="whitesmoke" variant={isMobile ? "h5" : "h4"} component="p">
-                Instalacje fotowoltaiczne i
+                Instalacje fotowoltaiczne{isMobile? "":" i "}
               </Typography>
               <Typography color="whitesmoke" variant={isMobile ? "h5" : "h4"} component="p">
                 {dynamicText()}
