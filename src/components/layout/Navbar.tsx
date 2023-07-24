@@ -66,20 +66,21 @@ const Navbar = ({ scrollTo }: Props): JSX.Element => {
   useEffect(() => {
     router.events.on("routeChangeStart", (url, { shallow }) => {
       setLoading(true);
-      console.log(url);
+    });
+    router.events.on("routeChangeComplete", (url, { shallow }) => {
+      setLoading(false);
     });
     return () => {
       router.events.off("routeChangeStart", () => {});
+      router.events.off("routeChangeComplete", () => {});
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Handle scrolling actions on the home page when the user redirects to it
   useEffect(() => {
-    console.log("pathName: ", router.pathname);
     // console.log("query name: ", router.query.name)
     if (router.pathname === "/") {
-      console.log(backAction);
       // Scroll to realizations when user was before on the page with specified realization(when redirecting to specified realization query name is set to "Realizacje")
       if (backAction) {
         const element = document.getElementsByName("Realizacje")[0];
@@ -98,8 +99,6 @@ const Navbar = ({ scrollTo }: Props): JSX.Element => {
     } else {
       setBackAction(false);
     }
-
-    setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname]);
 
