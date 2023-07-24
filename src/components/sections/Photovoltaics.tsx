@@ -65,7 +65,13 @@ const Photovoltaics = (): JSX.Element => {
                   maxWidth: "90%",
                 }}
               >
-                <Image src={img1} fill alt="s-control fotowoltaika" style={{ objectFit: "cover" }} />
+                <Image
+                  src={img1}
+                  fill
+                  alt="s-control fotowoltaika"
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 600px) 100vw, 50vw"
+                />
               </Box>
               <Box
                 sx={{
@@ -77,7 +83,13 @@ const Photovoltaics = (): JSX.Element => {
                   border: "12px solid white",
                 }}
               >
-                <Image src={img2} fill alt="s-control fotowoltaika" style={{ objectFit: "cover" }} />
+                <Image
+                  src={img2}
+                  fill
+                  alt="s-control fotowoltaika"
+                  style={{ objectFit: "cover" }}
+                  sizes="(max-width: 600px) 60vw, 25vw"
+                />
               </Box>
             </Grid>
           </Zoom>

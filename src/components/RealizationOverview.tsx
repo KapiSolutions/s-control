@@ -103,7 +103,13 @@ const RealizationOverview = ({ realization }: Props): JSX.Element => {
           )}
       </Stack>
       <Box sx={{ position: "relative", width: "100%", height: "300px", mt: 3 }}>
-        <Image src={realization.mainImage} fill alt={realization.title} style={{ objectFit: "cover" }} />
+        <Image
+          src={realization.mainImage}
+          fill
+          alt={realization.title}
+          style={{ objectFit: "cover" }}
+          sizes="(max-width: 600px) 100vw, 85vw"
+        />
       </Box>
       {/* Description */}
       <Box sx={{ mt: 2 }}>
@@ -135,6 +141,7 @@ const RealizationOverview = ({ realization }: Props): JSX.Element => {
                   fill
                   alt={`S-control Instalacje fotowoltaiczne ${realization.atrLocalization}`}
                   style={{ objectFit: "cover", borderRadius: "4px" }}
+                  sizes="(max-width: 600px) 100vw, 33vw"
                 />
               </Box>
             ))}
