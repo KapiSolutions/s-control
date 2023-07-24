@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Box, Button, Typography, Stack, Container, useTheme, useMediaQuery } from "@mui/material";
 import { TypeAnimation } from "react-type-animation";
@@ -6,12 +6,13 @@ import Navbar from "./Navbar";
 import Logotype from "../Logotype";
 
 const Header = (): JSX.Element => {
+  const [scrollTo, setScrollTo] = useState({ change: false, name: "" });
   const router = useRouter();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
   });
-  const scrollOffset = 70;
+
   const styles = {
     overlay: {
       position: "absolute",
@@ -36,15 +37,6 @@ const Header = (): JSX.Element => {
       backgroundSize: "cover",
     },
   };
-  const scrollToSection = (name: string) => {
-    if (router.pathname === "/") {
-      const element = document.getElementsByName(name)[0];
-      window.history.pushState(null, "", `/#${name}`); //add to history without loading the page
-      window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "smooth" });
-    } else {
-      router.push(`/#${name}`, undefined, { scroll: false });
-    }
-  };
   const dynamicText = (): JSX.Element => {
     const delay = 2000;
     return (
@@ -60,7 +52,7 @@ const Header = (): JSX.Element => {
   };
   return (
     <Box sx={styles.wrapper}>
-      <Navbar />
+      <Navbar scrollTo={scrollTo} />
       <Box sx={styles.overlay}>
         <Container>
           <Stack spacing={6} sx={{ textAlign: "left", ml: 2 }}>
@@ -106,7 +98,7 @@ const Header = (): JSX.Element => {
                   borderRadius: "10px",
                   border: "1px solid #001525",
                 }}
-                onClick={() => scrollToSection("Kontakt")}
+                onClick={() => setScrollTo({ change: !scrollTo.change, name: "Kontakt" })}
               >
                 Zamów bezpłatny audyt
               </Button>
@@ -115,13 +107,7 @@ const Header = (): JSX.Element => {
                 size="large"
                 color="primary"
                 sx={{ fontWeight: "bold", width: "220px", height: "50px", borderRadius: "10px" }}
-                onClick={() => {
-                  if (router.route === "/") {
-                    document.getElementsByName("main")[0].scrollIntoView({ block: "start", inline: "nearest" });
-                  } else {
-                    router.push("/#main");
-                  }
-                }}
+                onClick={() => setScrollTo({ change: !scrollTo.change, name: "main" })}
               >
                 Dowiedz się więcej
               </Button>

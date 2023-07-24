@@ -26,9 +26,14 @@ import Logotype from "../Logotype";
 const pages = ["Fotowoltaika", "Pompy Ciepła", "Realizacje", "O Nas", "Kontakt"];
 const sections = ["Fotowoltaika", "Pompy-ciepla", "Realizacje", "O-nas", "Kontakt"];
 
-const Navbar = (): JSX.Element => {
+type Props = {
+  scrollTo: {change: boolean, name : string};
+};
+
+const Navbar = ({ scrollTo }: Props): JSX.Element => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [backAction, setBackAction] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElNavLg, setAnchorElNavLg] = useState<null | HTMLElement>(null);
   const { user, error, isLoading } = useUser();
@@ -53,40 +58,77 @@ const Navbar = (): JSX.Element => {
     setAnchorElNavLg(null);
   };
 
+  useEffect(() => {
+    scrollTo.name && scrollToSection(scrollTo.name);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scrollTo.change]);
+
+  useEffect(() => {
+    router.events.on("routeChangeStart", (url, { shallow }) => {
+      setLoading(true);
+      console.log(url);
+    });
+    return () => {
+      router.events.off("routeChangeStart", () => {});
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // Handle scrolling actions on the home page when the user redirects to it
   useEffect(() => {
-    if (window.location.hash && router.pathname == "/") {
-      const name = window.location.hash.replace("#", "");
-      const element = document.getElementsByName(name)[0];
-      element && window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "smooth" });
+    console.log("pathName: ", router.pathname);
+    // console.log("query name: ", router.query.name)
+    if (router.pathname === "/") {
+      console.log(backAction);
+      // Scroll to realizations when user was before on the page with specified realization(when redirecting to specified realization query name is set to "Realizacje")
+      if (backAction) {
+        const element = document.getElementsByName("Realizacje")[0];
+        element && window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "instant" });
+      } else if (router.query.name) {
+        // Scroll to choosen section from the navbar
+        const name = router.query.name?.toString();
+        const offset = name ==="main" ? 0 : scrollOffset;
+        const element = document.getElementsByName(name)[0];
+        element && window.scrollTo({ top: element.offsetTop - offset, behavior: "instant" });
+      }
     }
+
+    if (router.pathname === "/realizacje/[pid]") {
+      setBackAction(true);
+    } else {
+      setBackAction(false);
+    }
+
     setLoading(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname]);
 
   const scrollToSection = (name: string) => {
     if (router.pathname === "/") {
+      const offset = name ==="main" ? 0 : scrollOffset;
       const element = document.getElementsByName(name)[0];
       if (element) {
-        window.history.pushState(null, "", `/#${name}`); //add to history without loading the page
-        // window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
-        window.scrollTo({ top: element.offsetTop - scrollOffset, behavior: "smooth" });
+        window.scrollTo({ top: element.offsetTop - offset, behavior: "smooth" });
       }
     } else {
-      router.push(`/#${name}`, undefined, { scroll: false });
+      setBackAction(false);
+      router.push(
+        {
+          pathname: "/",
+          query: { name: name },
+        },
+        undefined,
+        { scroll: false }
+      );
     }
   };
 
   const brandButtonAction = () => {
     if (router.pathname === "/") {
-      window.history.pushState(null, "", `/`);
       window.scrollTo(0, 0);
     } else {
       router.push("/");
     }
-  };
-
-  const showBackdrop = () => {
-    router.pathname != "/admin/realizations" && setLoading(true);
   };
 
   return (
@@ -171,7 +213,7 @@ const Navbar = (): JSX.Element => {
                     <MenuItem onClick={closeNavMenu}>
                       <Stack direction="row" spacing={1}>
                         <SettingsIcon />
-                        <Link href="/admin/realizations#main" onClick={showBackdrop}>
+                        <Link href="/admin/realizations#main">
                           <Typography textAlign="center" component="span">
                             Realizacje
                           </Typography>
@@ -253,7 +295,7 @@ const Navbar = (): JSX.Element => {
                     <MenuItem onClick={closeNavMenuLg} divider>
                       <Stack direction="row" alignItems="center" spacing={1}>
                         <SettingsIcon sx={{ fontSize: "medium" }} />
-                        <Link href="/admin/realizations#main" onClick={showBackdrop}>
+                        <Link href="/admin/realizations#main">
                           <Typography textAlign="center" component="span">
                             Realizacje
                           </Typography>
