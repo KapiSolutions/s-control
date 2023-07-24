@@ -33,11 +33,11 @@ const BreadCrumbs = ({ items }: Props): JSX.Element => {
         <li itemProp="itemListElement" itemScope={true} itemType="http://schema.org/ListItem">
           {items ? (
             <Link
-              href="/#main"
+              href="/"
               itemScope={true}
               itemType="http://schema.org/Thing"
               itemProp="item"
-              itemID="/#main"
+              itemID="/"
               passHref
             >
               <Typography variant="body2" component="span" itemProp="name" sx={{ opacity: 0.7 }} className="Hover">
