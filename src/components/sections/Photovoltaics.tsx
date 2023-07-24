@@ -35,7 +35,7 @@ const Photovoltaics = (): JSX.Element => {
   };
   return (
     <Box component="section" sx={{ pt: 6, pb: 6 }}>
-      <Container sx={{ minHeight: "100vh" }} name="Fotowoltaika">
+      <Container name="Fotowoltaika">
         <ContentHeader primary="Instalacje Fotowoltaiczne" secondary="Zielona energia dla Twojego domu" />
         <Grid
           container

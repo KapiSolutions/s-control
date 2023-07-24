@@ -36,7 +36,7 @@ const AboutUs = (): JSX.Element => {
   };
   return (
     <Box component="section" sx={{ bgcolor: "layout.semiLight", pt: 6, pb: 6, maxWidth: "100vw" }}>
-      <Container sx={{ minHeight: "100vh" }} name="O-nas">
+      <Container name="O-nas">
         <ContentHeader primary="O nas" secondary="Poznaj S-control" />
         <Grid container alignItems="center" justifyContent="space-evenly" sx={{ margin: "auto" }}>
           <Grid
