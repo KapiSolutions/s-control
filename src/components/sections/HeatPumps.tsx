@@ -49,7 +49,7 @@ const HeatPumps = (): JSX.Element => {
           <Stack
             direction={isMobile ? "column" : "row"}
             spacing={4}
-            alignItems="center"
+            alignItems="top"
             justifyContent="space-evenly"
             ref={itemRef}
           >
