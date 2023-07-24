@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Grid, Stack, Typography, useTheme, useMediaQuery, Container, Divider } from "@mui/material";
 import type { Realization } from "@/utils/schema/realization";
 import ContentHeader from "./ContentHeader";
@@ -14,6 +14,7 @@ import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
 import HeatPumpIcon from "@mui/icons-material/HeatPump";
 import AppsIcon from "@mui/icons-material/Apps";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
+import ImageGallery from "./ImageGallery";
 
 //Define Types
 type Props = {
@@ -21,6 +22,7 @@ type Props = {
 };
 
 const RealizationOverview = ({ realization }: Props): JSX.Element => {
+  const [show, setShow] = useState(-1);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
     defaultMatches: true,
@@ -135,6 +137,8 @@ const RealizationOverview = ({ realization }: Props): JSX.Element => {
                   width: isMobile ? "100%" : "250px",
                   height: "200px",
                 }}
+                className={isMobile ? "" : "pointer zoom"}
+                onClick={() => setShow(idx)}
               >
                 <Image
                   src={url}
@@ -158,6 +162,7 @@ const RealizationOverview = ({ realization }: Props): JSX.Element => {
           </Typography>
         ))}
       </Stack>
+      {!isMobile && <ImageGallery imgSet={realization.images?.split("\n")} show={show} setShow={setShow} />}
     </Box>
   );
 };
