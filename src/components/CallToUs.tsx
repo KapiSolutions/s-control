@@ -34,19 +34,10 @@ const CallToUs = (): JSX.Element => {
     },
   };
 
-  const scrollButtonAction = () => {
-    if (router.pathname === "/") {
-      window.history.pushState(null, "", `/`);
-      window.scrollTo(0, 0);
-    } else {
-      window.scrollTo(0, 0);
-    }
-  };
-
   return (
     <Box sx={{ position: "relative", width: "100vw", bgcolor: "layout.dark", pt: 10, pb: 10 }}>
       <Box sx={style.diamondShape}>
-        <Box sx={style.diamondContent} className="pointer Hover" onClick={scrollButtonAction}>
+        <Box sx={style.diamondContent} className="pointer Hover" onClick={()=>window.scrollTo(0, 0)}>
           <KeyboardDoubleArrowUpIcon sx={{ fontSize: 32 }} />
         </Box>
       </Box>
