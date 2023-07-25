@@ -19,9 +19,10 @@ type Props = {
   realization: Realization;
   prevID?: string;
   nextID?: string;
+  previewMode?: boolean;
 };
 
-const RealizationOverview = ({ realization, prevID, nextID }: Props): JSX.Element => {
+const RealizationOverview = ({ realization, prevID, nextID, previewMode = false }: Props): JSX.Element => {
   const [show, setShow] = useState(-1);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
@@ -169,40 +170,45 @@ const RealizationOverview = ({ realization, prevID, nextID }: Props): JSX.Elemen
           </Typography>
         ))}
       </Stack>
-      <Stack
-        direction="row"
-        component="nav"
-        spacing={isMobile ? 1 : 6}
-        mt={6}
-        alignItems="center"
-        justifyContent={isMobile ? "space-evenly" : "center"}
-      >
-        <Link
-          href={{
-            pathname: "/realizacje/[pid]",
-            query: { pid: prevID, name: "Realizacje" },
-            hash: "main",
-          }}
-          passHref
+
+      {/* Nav buttons */}
+      {!previewMode && (
+        <Stack
+          direction="row"
+          component="nav"
+          spacing={isMobile ? 1 : 6}
+          mt={6}
+          alignItems="center"
+          justifyContent={isMobile ? "space-evenly" : "center"}
         >
-          <Button variant="contained" startIcon={<KeyboardDoubleArrowLeftIcon />}>
-            Poprzedni
-          </Button>
-        </Link>
-        <BoltIcon sx={{ fontSize: 32 }} />
-        <Link
-          href={{
-            pathname: "/realizacje/[pid]",
-            query: { pid: nextID, name: "Realizacje" },
-            hash: "main",
-          }}
-          passHref
-        >
-          <Button variant="contained" endIcon={<KeyboardDoubleArrowRightIcon />}>
-            Następny
-          </Button>
-        </Link>
-      </Stack>
+          <Link
+            href={{
+              pathname: "/realizacje/[pid]",
+              query: { pid: prevID, name: "Realizacje" },
+              hash: "main",
+            }}
+            passHref
+          >
+            <Button variant="contained" startIcon={<KeyboardDoubleArrowLeftIcon />}>
+              Poprzedni
+            </Button>
+          </Link>
+          <BoltIcon sx={{ fontSize: 32 }} />
+          <Link
+            href={{
+              pathname: "/realizacje/[pid]",
+              query: { pid: nextID, name: "Realizacje" },
+              hash: "main",
+            }}
+            passHref
+          >
+            <Button variant="contained" endIcon={<KeyboardDoubleArrowRightIcon />}>
+              Następny
+            </Button>
+          </Link>
+        </Stack>
+      )}
+
       {!isMobile && <ImageGallery imgSet={realization.images?.split("\n")} show={show} setShow={setShow} />}
     </Box>
   );
