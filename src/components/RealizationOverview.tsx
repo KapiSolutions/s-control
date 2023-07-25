@@ -169,7 +169,14 @@ const RealizationOverview = ({ realization, prevID, nextID }: Props): JSX.Elemen
           </Typography>
         ))}
       </Stack>
-      <Stack direction="row" component="nav" spacing={isMobile ? 1 : 6} mt={6} alignItems="center" justifyContent={isMobile ? "space-evenly" : "center"}> 
+      <Stack
+        direction="row"
+        component="nav"
+        spacing={isMobile ? 1 : 6}
+        mt={6}
+        alignItems="center"
+        justifyContent={isMobile ? "space-evenly" : "center"}
+      >
         <Link
           href={{
             pathname: "/realizacje/[pid]",
@@ -182,7 +189,7 @@ const RealizationOverview = ({ realization, prevID, nextID }: Props): JSX.Elemen
             Poprzedni
           </Button>
         </Link>
-        <BoltIcon sx={{ fontSize: 32}} />
+        <BoltIcon sx={{ fontSize: 32 }} />
         <Link
           href={{
             pathname: "/realizacje/[pid]",
