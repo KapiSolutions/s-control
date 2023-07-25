@@ -282,7 +282,7 @@ const RealizationTemplate = ({ realization }: Props): JSX.Element => {
 
       {showPreview ? (
         <Container sx={{ mt: 2 }}>
-          <RealizationOverview realization={getValues()} />
+          <RealizationOverview realization={getValues()} previewMode={true}/>
           {/* Submit button */}
           <Divider orientation="horizontal" flexItem sx={{ mt: 4 }} />
           <Button
