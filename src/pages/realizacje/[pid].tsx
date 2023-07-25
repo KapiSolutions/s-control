@@ -9,9 +9,13 @@ import BreadCrumbs from "@/components/BreadCrumbs";
 import { NextSeo, ArticleJsonLd } from "next-seo";
 
 // Define types
-type Props = { realization: Realization | null };
+type Props = {
+  realization: Realization | null;
+  prevID: string;
+  nextID: string;
+};
 
-export default function RealizationOverviewPage({ realization }: Props): JSX.Element {
+export default function RealizationOverviewPage({ realization, prevID, nextID }: Props): JSX.Element {
   const router = useRouter();
   if (!realization) {
     return <></>;
@@ -59,7 +63,7 @@ export default function RealizationOverviewPage({ realization }: Props): JSX.Ele
         <BreadCrumbs items={breadcrumbs} />
       </Box>
       <Container maxWidth="md">
-        {realization ? <RealizationOverview realization={realization} /> : "Realization does not exist."}
+        {realization ? <RealizationOverview realization={realization} prevID={prevID} nextID={nextID} /> : "Realization does not exist."}
       </Container>
     </>
   );
@@ -68,8 +72,15 @@ export default function RealizationOverviewPage({ realization }: Props): JSX.Ele
 export async function getStaticProps(context: GetStaticPropsContext) {
   const dbName = "Data";
   const collectionName = "Realizations";
-  let realization = null;
   const id = context.params?.pid ? context.params?.pid : "";
+  let realization = null;
+  let sortedDocs = null;
+  let prevID = "";
+  let nextID = "";
+  
+  function parseDate(input: string) {
+    return new Date(input).getTime();
+  }
 
   if (id && ObjectId.isValid(id as string)) {
     try {
@@ -78,8 +89,19 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       // Access the specified database and collection
       const db = client.db(dbName);
       const collection = db.collection(collectionName);
-      // Retrieve all documents in the collection
+      // Retrieve document by specyfied id
       realization = await collection.findOne({ _id: new ObjectId(id as string) });
+      // Retrieve all documents from the collection
+      const documents = await collection.find().toArray();
+      // Sort documents by date
+      sortedDocs = documents.sort(
+        (a: { realizationDate: string }, b: { realizationDate: string }) =>
+          parseDate(b.realizationDate) - parseDate(a.realizationDate)
+      );
+      // find previous and next id of realizations
+      const actID = sortedDocs.findIndex((item: Realization) => item._id?.toString() === id);
+      prevID = actID > 0 ? sortedDocs[actID - 1]._id : sortedDocs[sortedDocs.length - 1]._id;
+      nextID = actID < sortedDocs.length - 1 ? sortedDocs[actID + 1]._id : sortedDocs[0]._id;
     } catch (error) {
       console.log(error);
     }
@@ -88,6 +110,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
   return {
     props: {
       realization: JSON.parse(JSON.stringify(realization)),
+      prevID: prevID.toString(),
+      nextID: nextID.toString(),
     },
     revalidate: false, //on demand revalidation
   };
