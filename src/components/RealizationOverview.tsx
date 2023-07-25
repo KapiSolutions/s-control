@@ -1,27 +1,27 @@
 import React, { useState } from "react";
-import { Box, Grid, Stack, Typography, useTheme, useMediaQuery, Container, Divider } from "@mui/material";
+import { Box, Grid, Stack, Typography, useTheme, useMediaQuery, Button, Divider } from "@mui/material";
 import type { Realization } from "@/utils/schema/realization";
 import ContentHeader from "./ContentHeader";
 import Image from "next/image";
-import SegmentIcon from "@mui/icons-material/Segment";
-import LightModeIcon from "@mui/icons-material/LightMode";
 import BoltIcon from "@mui/icons-material/Bolt";
-import CableIcon from "@mui/icons-material/Cable";
 import SolarPowerIcon from "@mui/icons-material/SolarPower";
 import PowerIcon from "@mui/icons-material/Power";
-import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
-import HeatPumpIcon from "@mui/icons-material/HeatPump";
 import AppsIcon from "@mui/icons-material/Apps";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import ImageGallery from "./ImageGallery";
+import Link from "next/link";
 
 //Define Types
 type Props = {
   realization: Realization;
+  prevID: string;
+  nextID: string;
 };
 
-const RealizationOverview = ({ realization }: Props): JSX.Element => {
+const RealizationOverview = ({ realization, prevID, nextID }: Props): JSX.Element => {
   const [show, setShow] = useState(-1);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"), {
@@ -41,7 +41,7 @@ const RealizationOverview = ({ realization }: Props): JSX.Element => {
               {content}
             </Typography>
           </Stack>
-          <Box sx={{ width: "100%", height: "1px", backgroundColor: "text.disabled", mt: 2, opacity: 0.3 }}></Box>
+          <Box sx={{ width: "100%", height: "1px", backgroundColor: "text.disabled", mt: 1, opacity: 0.3 }}></Box>
         </Stack>
       );
     }
@@ -155,12 +155,46 @@ const RealizationOverview = ({ realization }: Props): JSX.Element => {
 
       {/* Hash tags */}
       <Divider orientation="horizontal" sx={{ mt: 2 }} />
-      <Stack direction="row" useFlexGap flexWrap="wrap" spacing={2} sx={{ mt: 2 }}>
+      <Stack
+        direction="row"
+        useFlexGap
+        flexWrap="wrap"
+        spacing={2}
+        justifyContent={isMobile ? "center" : "left"}
+        sx={{ mt: 2 }}
+      >
         {realization.tags?.split(" ").map((tag, idx) => (
           <Typography variant="body2" key={idx}>
             #{tag.trim()}
           </Typography>
         ))}
+      </Stack>
+      <Stack direction="row" component="nav" spacing={isMobile ? 1 : 6} mt={6} alignItems="center" justifyContent={isMobile ? "space-evenly" : "center"}> 
+        <Link
+          href={{
+            pathname: "/realizacje/[pid]",
+            query: { pid: prevID, name: "Realizacje" },
+            hash: "main",
+          }}
+          passHref
+        >
+          <Button variant="contained" startIcon={<KeyboardDoubleArrowLeftIcon />}>
+            Poprzedni
+          </Button>
+        </Link>
+        <BoltIcon sx={{ fontSize: 32}} />
+        <Link
+          href={{
+            pathname: "/realizacje/[pid]",
+            query: { pid: prevID, name: "Realizacje" },
+            hash: "main",
+          }}
+          passHref
+        >
+          <Button variant="contained" endIcon={<KeyboardDoubleArrowRightIcon />}>
+            Następny
+          </Button>
+        </Link>
       </Stack>
       {!isMobile && <ImageGallery imgSet={realization.images?.split("\n")} show={show} setShow={setShow} />}
     </Box>
